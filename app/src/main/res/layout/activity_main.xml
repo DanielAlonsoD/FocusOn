@@ -1,17 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@color/gray_nurse">
+
+    <ImageView
+        android:id="@+id/imagenLogo"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/focus_on"
+        android:layout_gravity="center"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputCorreo"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        app:startIconDrawable="@drawable/mail"
+        android:hint="Correo"
+        app:endIconMode="clear_text">
+
+        <EditText
+            android:id="@+id/textoInsertarCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputContrasena"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        app:startIconDrawable="@drawable/lock"
+        android:hint="Contraseña"
+        app:endIconMode="password_toggle">
+
+        <EditText
+            android:id="@+id/textoInsertarContrasena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/botonInicio"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="inicio Sesión"/>
+        android:id="@+id/botonIniciarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/imagenLogo"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/gray_nurse"
+        android:text="Iniciar Sesión"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/botonRegistrarse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imagenLogo"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/gray_nurse"
+        android:text="Registrarse"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/botonGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:drawableStart="@mipmap/ic_launcher"
+        android:text="Iniciar con Google"
+        android:textColor="@color/scampi"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+</LinearLayout>
