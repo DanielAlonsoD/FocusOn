@@ -46,14 +46,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (correo.isEmpty() || contrasena.isEmpty()) {
 
         } else {
-            Log.i("Escrito todo", "Correo Y Contraseña escritos");
             autenticacion.signInWithEmailAndPassword(correo, contrasena)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            Log.i("Ejecutando", "Ejecutando el auth");
                             if (task.isSuccessful()) {
                                 Intent actividadMenu = new Intent(MainActivity.this, MenuActivity.class);
+                                startActivity(actividadMenu);
+                            } else {
+
                             }
                         }
                     });

@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray_nurse">#E2EAE3</color>
+    <color name="tuna">#353536</color>
     <color name="blue_bell">#8F82C4</color>
     <color name="scampi">#6159A2</color>
 </resources>

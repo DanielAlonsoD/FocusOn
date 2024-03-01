@@ -6,11 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical"
-    android:background="@color/gray_nurse">
+    android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imagenLogo"
+        android:id="@+id/imagenLogoInicio"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:src="@drawable/focus_on"
@@ -59,7 +58,6 @@
         android:id="@+id/botonIniciarSesion"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/imagenLogo"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="10dp"
@@ -72,7 +70,6 @@
         android:id="@+id/botonRegistrarse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imagenLogo"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="10dp"
