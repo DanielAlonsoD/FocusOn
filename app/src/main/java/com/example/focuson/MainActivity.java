@@ -36,28 +36,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button botonGoogle = findViewById(R.id.botonGoogle);
 
         botonInicio.setOnClickListener(this);
+        botonRegistrarse.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        String correo = textoCorreo.getText().toString();
-        String contrasena = textoContrasena.getText().toString();
+        if (v.getId() == R.id.botonIniciarSesion) {
+            String correo = textoCorreo.getText().toString();
+            String contrasena = textoContrasena.getText().toString();
 
-        if (correo.isEmpty() || contrasena.isEmpty()) {
+            if (correo.isEmpty() || contrasena.isEmpty()) {
 
-        } else {
-            autenticacion.signInWithEmailAndPassword(correo, contrasena)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                Intent actividadMenu = new Intent(MainActivity.this, MenuActivity.class);
-                                startActivity(actividadMenu);
-                            } else {
+            } else {
+                autenticacion.signInWithEmailAndPassword(correo, contrasena)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Intent actividadMenu = new Intent(MainActivity.this, MenuActivity.class);
+                                    startActivity(actividadMenu);
+                                } else {
 
+                                }
                             }
-                        }
-                    });
+                        });
+            }
+        } else if (v.getId() == R.id.botonRegistrarse) {
+            Intent actividadRegistro = new Intent(this, RegistroActivity.class);
+            startActivity(actividadRegistro);
         }
     }
 }

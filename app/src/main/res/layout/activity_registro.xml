@@ -9,6 +9,7 @@
     tools:context=".RegistroActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/encabezadoRegistro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:navigationIcon="@drawable/arrow_back"
@@ -74,7 +75,8 @@
         android:layout_marginBottom="10dp"
         app:startIconDrawable="@drawable/lock"
         android:hint="Contraseña"
-        app:endIconMode="password_toggle">
+        app:endIconMode="password_toggle"
+        app:helperText="Mínimo 6 caracteres">
 
         <EditText
             android:id="@+id/editTextContrasenaRegistro"
@@ -95,7 +97,8 @@
         android:layout_marginBottom="10dp"
         app:startIconDrawable="@drawable/lock"
         android:hint="Confirmar Contraseña"
-        app:endIconMode="password_toggle">
+        app:endIconMode="password_toggle"
+        app:helperText="Mínimo 6 caracteres">
 
         <EditText
             android:id="@+id/editTextConfirmarContrasenaRegistro"
