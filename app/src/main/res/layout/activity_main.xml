@@ -17,7 +17,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputCorreo"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
@@ -36,7 +35,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputContrasena"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
@@ -54,39 +52,32 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/botonIniciarSesion"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="10dp"
-        android:textColor="@color/gray_nurse"
-        android:text="Iniciar Sesión"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
-
-    <Button
-        android:id="@+id/botonRegistrarse"
+    <Space
+        android:id="@+id/espacioDatosEInicioSesion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_weight="1"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/botonIniciarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Iniciar Sesión"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/botonRegistrarse"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
         android:textColor="@color/gray_nurse"
         android:text="Registrarse"
-        android:textStyle="bold"/>
-
-    <Button
-        android:id="@+id/botonGoogle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:drawableStart="@mipmap/ic_launcher"
-        android:text="Iniciar con Google"
-        android:textColor="@color/scampi"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textSize="20sp"/>
 
 </LinearLayout>

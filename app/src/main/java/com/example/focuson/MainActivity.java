@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,9 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         textoCorreo = findViewById(R.id.textoInsertarCorreo);
         textoContrasena = findViewById(R.id.textoInsertarContrasena);
-        Button botonInicio = findViewById(R.id.botonIniciarSesion);
-        Button botonRegistrarse = findViewById(R.id.botonRegistrarse);
-        Button botonGoogle = findViewById(R.id.botonGoogle);
+        MaterialButton botonInicio = findViewById(R.id.botonIniciarSesion);
+        MaterialButton botonRegistrarse = findViewById(R.id.botonRegistrarse);
 
         botonInicio.setOnClickListener(this);
         botonRegistrarse.setOnClickListener(this);

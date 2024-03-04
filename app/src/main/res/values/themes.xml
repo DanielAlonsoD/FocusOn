@@ -2,5 +2,27 @@
     <!-- Base application theme. -->
     <style name="Theme.FocusOn" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:windowBackground">@color/gray_nurse</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+
+        <item name="materialButtonStyle">@style/Botones</item>
+        <item name="textInputStyle">@style/TextInputs</item>
+    </style>
+
+    <style name="Botones" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/scampi</item>
+        <item name="android:textColor">@color/gray_nurse</item>
+    </style>
+
+    <style name="TextInputs" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxBackgroundColor">@color/gray_nurse</item>
+        <item name="boxStrokeColor">@color/scampi</item>
+        <item name="hintTextColor">@color/scampi</item>
+        <item name="cursorColor">@color/tuna</item>
+        <item name="android:textColor">@color/tuna</item>
     </style>
 </resources>

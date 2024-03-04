@@ -59,24 +59,19 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Log.i("addOnCompleteListener", "Se ejecuta esto");
                                 if (task.isSuccessful()) {
-                                    Log.i("Funciona", "Funciona");
                                     FirebaseUser usuario = autenticacion.getCurrentUser();
+                                    DatosUsuarioFirebase datosUsuarioFirebase = new DatosUsuarioFirebase(nombre, null);
+                                    baseDeDatos.getReference(usuario.getUid()).child("DatosUsuario").setValue(datosUsuarioFirebase);
 
-                                    if (usuario != null) {
-                                        DatosUsuarioFirebase datosUsuarioFirebase = new DatosUsuarioFirebase(nombre, null);
-                                        baseDeDatos.getReference(usuario.getUid()).child("DatosUsuario").setValue(datosUsuarioFirebase);
-                                        Intent actividadMenu = new Intent(RegistroActivity.this, MenuActivity.class);
-                                        startActivity(actividadMenu);
-                                    }
+                                    Intent actividadMenu = new Intent(RegistroActivity.this, MenuActivity.class);
+                                    startActivity(actividadMenu);
                                 }
                             }
                         });
             }
         } else {
-            Intent actividadInicio = new Intent(this, MainActivity.class);
-            startActivity(actividadInicio);
+            getOnBackPressedDispatcher().onBackPressed();
         }
     }
 }
