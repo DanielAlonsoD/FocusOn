@@ -24,101 +24,108 @@
         android:src="@drawable/focus_on"
         android:layout_gravity="center"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputNombreRegistro"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_below="@id/imagenLogoRegistro"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        app:startIconDrawable="@drawable/person"
-        android:hint="Nombre de Usuario"
-        app:endIconMode="clear_text">
+        android:layout_above="@id/botonRegistrarse"
+        android:gravity="center">
 
-        <EditText
-            android:id="@+id/editTextNombreRegistro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputCorreoRegistro"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textInputNombreRegistro"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        app:startIconDrawable="@drawable/mail"
-        android:hint="Correo"
-        app:endIconMode="clear_text">
-
-        <EditText
-            android:id="@+id/editTextCorreoRegistro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputContrasenaRegistro"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textInputCorreoRegistro"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        app:startIconDrawable="@drawable/lock"
-        android:hint="Contraseña"
-        app:endIconMode="password_toggle"
-        app:helperText="Mínimo 6 caracteres">
-
-        <EditText
-            android:id="@+id/editTextContrasenaRegistro"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputNombreRegistro"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
+            android:layout_below="@id/imagenLogoRegistro"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            app:startIconDrawable="@drawable/person"
+            android:hint="Nombre de Usuario"
+            app:endIconMode="clear_text">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <EditText
+                android:id="@+id/editTextNombreRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputConfirmarContrasenaRegistro"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textInputContrasenaRegistro"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        app:startIconDrawable="@drawable/lock"
-        android:hint="Confirmar Contraseña"
-        app:endIconMode="password_toggle"
-        app:helperText="Mínimo 6 caracteres">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/editTextConfirmarContrasenaRegistro"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputCorreoRegistro"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
+            android:layout_below="@id/textInputNombreRegistro"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            app:startIconDrawable="@drawable/mail"
+            android:hint="Correo"
+            app:endIconMode="clear_text">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <EditText
+                android:id="@+id/editTextCorreoRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputContrasenaRegistro"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textInputCorreoRegistro"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            app:startIconDrawable="@drawable/lock"
+            android:hint="Contraseña"
+            app:endIconMode="password_toggle"
+            app:helperText="Mínimo 6 caracteres">
+
+            <EditText
+                android:id="@+id/editTextContrasenaRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputConfirmarContrasenaRegistro"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textInputContrasenaRegistro"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            app:startIconDrawable="@drawable/lock"
+            android:hint="Confirmar Contraseña"
+            app:endIconMode="password_toggle"
+            app:helperText="Mínimo 6 caracteres">
+
+            <EditText
+                android:id="@+id/editTextConfirmarContrasenaRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/botonRegistrarse"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/textInputConfirmarContrasenaRegistro"
+        android:layout_alignParentBottom="true"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        app:backgroundTint="@color/scampi"
-        android:textColor="@color/gray_nurse"
         android:text="Registrarse"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textSize="20sp"/>
 
 </RelativeLayout>

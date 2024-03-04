@@ -15,6 +15,11 @@
         android:src="@drawable/focus_on"
         android:layout_gravity="center"/>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputCorreo"
         android:layout_width="match_parent"
@@ -53,10 +58,9 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Space
-        android:id="@+id/espacioDatosEInicioSesion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_weight="2"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/botonIniciarSesion"
@@ -66,8 +70,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
         android:text="Iniciar Sesión"
-        android:textSize="30sp"
-        android:textStyle="bold"/>
+        android:textSize="30sp"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/botonRegistrarse"
