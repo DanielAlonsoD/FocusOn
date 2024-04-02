@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/itemTareas"
+        android:title=""
+        android:icon="@drawable/list_alt"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/itemHorarios"
+        android:title=""
+        android:icon="@drawable/calendar"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/itemCronometros"
+        android:title=""
+        android:icon="@drawable/schedule"
+        app:showAsAction="always"/>
+
+</menu>

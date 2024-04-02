@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/layoutElementoTarea"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/textoSubtarea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:paddingBottom="10dp"
+        android:text="@string/textoTareas"
+        android:fontFamily="@font/montserrat_medium"
+        android:textSize="25sp"/>
+
+    <ImageButton
+        android:id="@+id/botonMasOpcionesSubtarea"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignTop="@id/textoSubtarea"
+        android:layout_alignBottom="@id/textoSubtarea"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:background="@color/gray_nurse"
+        android:src="@drawable/more_vert"
+        android:scaleX="2"
+        android:scaleY="2"/>
+
+    <CheckBox
+        android:id="@+id/checkRealizadoSubtarea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/botonMasOpcionesSubtarea"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divisorSubtareas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/textoSubtarea"
+        android:scaleY="1"/>
+
+</RelativeLayout>

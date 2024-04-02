@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/navegacion_principal">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navegacion_principal"
+    app:startDestination="@id/tareasFragment">
+
+    <fragment
+        android:id="@+id/tareasFragment"
+        android:name="com.example.focuson.TareasFragment"
+        tools:layout="@layout/fragment_tareas"/>
+
+    <fragment
+        android:id="@+id/horariosFragment"
+        android:name="com.example.focuson.HorariosFragment"
+        tools:layout="@layout/fragment_horarios"/>
+
+    <fragment
+        android:id="@+id/cronometrosFragment"
+        android:name="com.example.focuson.CronometrosFragment"
+        tools:layout="@layout/fragment_cronometros"/>
 
 </navigation>

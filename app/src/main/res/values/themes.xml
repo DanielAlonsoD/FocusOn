@@ -1,11 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.FocusOn" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorOnSecondaryContainer">@color/gray_nurse</item>
+        <item name="colorOnSurface">@color/transition</item>
+        <item name="colorOnSurfaceVariant">@color/tuna</item>
+
         <item name="android:windowBackground">@color/gray_nurse</item>
         <item name="android:fontFamily">@font/montserrat_bold</item>
 
         <item name="materialButtonStyle">@style/Botones</item>
         <item name="textInputStyle">@style/TextInputs</item>
+        <item name="floatingActionButtonStyle">@style/FloatingButton</item>
+        <item name="bottomNavigationStyle">@style/BottomNavigation</item>
     </style>
 
     <style name="Botones" parent="Widget.MaterialComponents.Button">
@@ -24,5 +30,18 @@
         <item name="hintTextColor">@color/scampi</item>
         <item name="cursorColor">@color/tuna</item>
         <item name="android:textColor">@color/tuna</item>
+    </style>
+
+    <style name="FloatingButton" parent="Widget.Design.FloatingActionButton">
+        <item name="android:backgroundTint">@color/scampi</item>
+        <item name="android:tint">@color/gray_nurse</item>
+        <item name="borderWidth">0dp</item>
+    </style>
+
+    <style name="BottomNavigation" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="itemIconSize">45dp</item>
+        <item name="itemIconTint">@color/m3_navigation_bar_item_with_indicator_icon_tint</item>
+        <item name="android:background">@color/scampi</item>
+        <item name="shapeAppearance">@style/Widget.Material3.BottomNavigationView</item>
     </style>
 </resources>
