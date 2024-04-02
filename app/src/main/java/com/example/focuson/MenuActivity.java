@@ -37,13 +37,13 @@ public class MenuActivity extends AppCompatActivity implements NavigationBarView
         boolean realizado = false;
         if (item.getItemId() == R.id.itemTareas) {
             realizado = true;
-            navController.navigate(R.id.itemTareas);
+            navController.navigate(R.id.tareasFragment);
         } else if (item.getItemId() == R.id.itemHorarios) {
             realizado = true;
-            navController.navigate(R.id.itemHorarios);
+            navController.navigate(R.id.horariosFragment);
         } else if (item.getItemId() == R.id.itemCronometros) {
             realizado = true;
-            navController.navigate(R.id.itemCronometros);
+            navController.navigate(R.id.cronometrosFragment);
         }
         return realizado;
     }
