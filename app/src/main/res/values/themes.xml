@@ -12,11 +12,19 @@
         <item name="textInputStyle">@style/TextInputs</item>
         <item name="floatingActionButtonStyle">@style/FloatingButton</item>
         <item name="bottomNavigationStyle">@style/BottomNavigation</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/Alertas.Titulo</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/Alertas.Cuerpo</item>
     </style>
 
     <style name="Botones" parent="Widget.MaterialComponents.Button">
         <item name="android:backgroundTint">@color/scampi</item>
         <item name="android:textColor">@color/gray_nurse</item>
+    </style>
+
+    <style name="BotonesAlertas" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/gray_nurse</item>
+        <item name="android:textColor">@color/scampi</item>
+        <item name="android:stateListAnimator">@null</item>
     </style>
 
     <style name="TextInputs" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
@@ -30,6 +38,7 @@
         <item name="hintTextColor">@color/scampi</item>
         <item name="cursorColor">@color/tuna</item>
         <item name="android:textColor">@color/tuna</item>
+        <item name="startIconTint">@color/transition</item>
     </style>
 
     <style name="FloatingButton" parent="Widget.Design.FloatingActionButton">
@@ -43,5 +52,27 @@
         <item name="itemIconTint">@color/m3_navigation_bar_item_with_indicator_icon_tint</item>
         <item name="android:background">@color/scampi</item>
         <item name="shapeAppearance">@style/Widget.Material3.BottomNavigationView</item>
+    </style>
+
+    <style name="Alertas" parent="MaterialAlertDialog.Material3">
+        <item name="colorOnSurface">@color/tuna</item>
+        <item name="android:backgroundTint">@color/gray_nurse</item>
+        <item name="buttonBarPositiveButtonStyle">@style/BotonesAlertas</item>
+        <item name="buttonBarNegativeButtonStyle">@style/BotonesAlertas</item>
+        <item name="buttonBarNeutralButtonStyle">@style/BotonesAlertas</item>
+        <item name="buttonBarButtonStyle">@style/BotonesAlertas</item>
+        <item name="buttonStyle">@style/BotonesAlertas</item>
+        <item name="android:buttonBarButtonStyle">@style/BotonesAlertas</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/BotonesAlertas</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/BotonesAlertas</item>
+        <item name="android:buttonBarNeutralButtonStyle">@style/BotonesAlertas</item>
+    </style>
+
+    <style name="Alertas.Titulo" parent="MaterialAlertDialog.Material3.Title.Text">
+        <item name="android:textColor">@color/tuna</item>
+    </style>
+
+    <style name="Alertas.Cuerpo" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textColor">@color/tuna</item>
     </style>
 </resources>

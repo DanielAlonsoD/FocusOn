@@ -12,6 +12,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 import tablas.Tarea;
@@ -43,7 +48,7 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
         holder.checkRealizada.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                holder.isRealizado(isChecked, holder.textoTarea);
+                holder.isRealizado(isChecked, holder.textoTarea, tarea.getId());
             }
         });
     }
@@ -56,25 +61,30 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textoTarea;
         public CheckBox checkRealizada;
+        public DatabaseReference baseDeDatos;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textoTarea = itemView.findViewById(R.id.textoTarea);
             checkRealizada = itemView.findViewById(R.id.checkRealizado);
+            FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+            baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Tareas");
         }
 
         public void representacionElementos(Tarea tarea) {
             textoTarea.setText(tarea.getNombre());
             checkRealizada.setChecked(tarea.isRealizado());
-            isRealizado(tarea.isRealizado(), textoTarea);
+            isRealizado(tarea.isRealizado(), textoTarea, tarea.getId());
         }
 
-        public void isRealizado(boolean isChecked, TextView textoTarea) {
+        public void isRealizado(boolean isChecked, TextView textoTarea, String id) {
             if (isChecked) {
                 textoTarea.setPaintFlags(textoTarea.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                baseDeDatos.child(id).child("realizado").setValue(true);
             } else {
                 textoTarea.setPaintFlags(textoTarea.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+                baseDeDatos.child(id).child("realizado").setValue(false);
             }
         }
     }

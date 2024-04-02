@@ -11,6 +11,11 @@ public class Tarea {
         this.realizado = realizado;
     }
 
+    public Tarea(String nombre, boolean realizado) {
+        this.nombre = nombre;
+        this.realizado = realizado;
+    }
+
     public String getId() {
         return id;
     }

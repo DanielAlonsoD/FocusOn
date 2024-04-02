@@ -5,6 +5,10 @@
     <string name="textoHorarios">Horarios</string>
     <string name="textoTemporizadores">Temporizadores</string>
 
+    <string name="textoNombreDeUsuario">Nombre de Usuario</string>
+
+    <string name="textoInsertaUnTexto">Inserta un texto</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

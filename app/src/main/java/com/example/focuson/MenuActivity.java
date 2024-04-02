@@ -9,6 +9,7 @@ import androidx.navigation.Navigation;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MenuActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
@@ -24,6 +25,9 @@ public class MenuActivity extends AppCompatActivity implements NavigationBarView
             public void handleOnBackPressed() {}
         };
         getOnBackPressedDispatcher().addCallback(this, haciaAtras);
+
+        BottomNavigationView barraInferior = findViewById(R.id.barraInferiorOpciones);
+        barraInferior.setOnItemSelectedListener(this::onNavigationItemSelected);
 
         navController = Navigation.findNavController(this, R.id.contenedorFragmentos);
     }
