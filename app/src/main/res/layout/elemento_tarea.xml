@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/layoutElementoTarea"
+<RelativeLayout
+    android:id="@+id/layoutElementoTarea"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="5dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:paddingBottom="10dp"
         android:text="@string/textoTareas"
         android:fontFamily="@font/montserrat_semibold"
@@ -22,8 +23,8 @@
         android:layout_height="40dp"
         android:layout_alignTop="@id/textoTarea"
         android:layout_alignBottom="@id/textoTarea"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
         android:background="@color/gray_nurse"
         android:src="@drawable/more_vert"
         android:scaleX="2"
@@ -33,7 +34,7 @@
         android:id="@+id/checkRealizado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/botonMasOpciones"/>
+        android:layout_toStartOf="@id/botonMasOpciones"/>
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/divisorTareaSubtarea"
@@ -48,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/divisorTareaSubtarea"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginStart="20dp"/>
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/divisorDeTareas"

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/layoutElementoHorario"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/textViewTituloHorario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textoTitulo"
+        android:textAlignment="center"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/textViewDiasSemana"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/textViewTituloHorario"
+        android:text="@string/textoDiasSemana"
+        android:fontFamily="@font/montserrat_semibold"
+        android:textAlignment="center"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/textViewHoras"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/textViewDiasSemana"
+        android:text="@string/textoHorasYMinutos"
+        android:fontFamily="@font/montserrat_medium"
+        android:textAlignment="center"
+        android:textSize="18sp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/botonEliminarHorario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/textViewHoras"
+        android:backgroundTint="@color/red"
+        android:fontFamily="@font/montserrat_semibold"
+        app:icon="@drawable/delete"
+        android:text="@string/textoEliminar"
+        android:textSize="15sp"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divisorDeHorarios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/botonEliminarHorario"
+        android:scaleY="3"
+        app:dividerColor="@color/blue_bell"/>
+
+</RelativeLayout>

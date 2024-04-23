@@ -1,13 +1,70 @@
 <resources>
     <string name="app_name">Focus On</string>
 
+    <!--Textos Repetidos-->
+    <string name="textoCorreo">Correo</string>
+    <string name="textoContrasena">Contraseña</string>
+    <string name="textoRegistrarse">Registrarse</string>
+    <string name="textoEliminar">Eliminar</string>
+
+    <!--Main Activity-->
+    <string name="textoIniciarSesion">Iniciar Sesión</string>
+
+    <!--Registro Activity-->
+    <string name="textoNombreDeUsuario">Nombre de Usuario</string>
+    <string name="textoMinimo6Caracteres">Mínimo 6 caracteres</string>
+    <string name="textoConfirmarContrasena">Confirmar Contraseña</string>
+
+    <!--Menu Principal-->
     <string name="textoTareas">Tareas</string>
     <string name="textoHorarios">Horarios</string>
     <string name="textoTemporizadores">Temporizadores</string>
 
-    <string name="textoNombreDeUsuario">Nombre de Usuario</string>
+    <!--Opciones Tareas y Subtareas-->
+    <string name="textoCrearSubtarea">Crear Subtarea</string>
+    <string name="textoEditar">Editar</string>
 
-    <string name="textoInsertaUnTexto">Inserta un texto</string>
+    <!--Alert Dialog-->
+    <string name="textoCreaUnaTarea">Crea una Tarea</string>
+    <string name="textoCreaUnaSubtarea">Crea una Subtarea</string>
+    <string name="textoOk">Ok</string>
+    <string name="textoCancelar">Cancelar</string>
+
+    <!--Alerta Crear Editar Tarea Subtarea-->
+    <string name="textoInsertarTituloTarea">Inserta el título de la Tarea</string>
+
+    <!--Crear Horario Activity-->
+    <string name="textoCrearHorario">Crear Horario</string>
+
+    <!--Alerta Crear Editar Horario-->
+    <string name="textoInsertarTituloHorario">Inserta un título para el horario</string>
+    <string name="textoLu">Lu</string>
+    <string name="textoMa">Ma</string>
+    <string name="textoMi">Mi</string>
+    <string name="textoJu">Ju</string>
+    <string name="textoVi">Vi</string>
+    <string name="textoSa">Sá</string>
+    <string name="textoDo">Do</string>
+    <string name="textoRepetirCadaSemana">Repetir cada semana</string>
+    <string name="textoSeleccionaHoraInicial">Selecciona la Hora Inicial</string>
+    <string name="textoSeleccionaHoraFinal">Selecciona la Hora Final</string>
+
+    <!--Snackbars errores-->
+    <string name="textoErrorDatosVacios">Debes rellenar todos los datos antes.</string>
+    <string name="textoErrorCorreoContrasenaIncorrectos">El correo o contraseña son incorrectos.</string>
+    <string name="textoErrorRegistro">El correo es inválido o el usuario ya existe.</string>
+    <string name="textoErrorContrasenaCorta">La contraseña debe tener mínimo 6 caracteres.</string>
+    <string name="textoErrorConfirmarContrasenaErronea">La contraseña y su confirmación son diferentes.</string>
+
+    <!--Error textInputs-->
+    <string name="textoDatoVacío">Rellena el dato</string>
+    <string name="textoDatoIncorrecto">Dato incorrecto</string>
+    <string name="textoDatoDiferente">No son iguales</string>
+
+    <!--Placeholder Texts-->
+    <string name="textoTitulo">Título</string>
+    <string name="textoDiasSemana">Días Semana</string>
+    <string name="textoHorasYMinutos">hh:MM - hh:MM</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

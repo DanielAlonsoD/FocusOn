@@ -39,6 +39,9 @@
         <item name="cursorColor">@color/tuna</item>
         <item name="android:textColor">@color/tuna</item>
         <item name="startIconTint">@color/transition</item>
+        <item name="helperTextTextColor">@color/transition</item>
+        <item name="errorIconTint">@color/red</item>
+        <item name="errorTextColor">@color/red</item>
     </style>
 
     <style name="FloatingButton" parent="Widget.Design.FloatingActionButton">
@@ -49,7 +52,7 @@
 
     <style name="BottomNavigation" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="itemIconSize">45dp</item>
-        <item name="itemIconTint">@color/m3_navigation_bar_item_with_indicator_icon_tint</item>
+        <item name="itemIconTint" tools:ignore="PrivateResource">@color/m3_navigation_bar_item_with_indicator_icon_tint</item>
         <item name="android:background">@color/scampi</item>
         <item name="shapeAppearance">@style/Widget.Material3.BottomNavigationView</item>
     </style>
@@ -74,5 +77,10 @@
 
     <style name="Alertas.Cuerpo" parent="MaterialAlertDialog.Material3.Body.Text">
         <item name="android:textColor">@color/tuna</item>
+    </style>
+
+    <style name="Titles" parent="Theme.FocusOn">
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">20sp</item>
     </style>
 </resources>

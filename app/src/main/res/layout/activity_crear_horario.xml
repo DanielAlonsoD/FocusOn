@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/layoutCrearHorario"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CrearHorario">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/encabezadoCrearHorario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/scampi"
+        app:title="@string/textoCrearHorario"
+        app:titleTextColor="@color/gray_nurse"
+        app:titleTextAppearance="@style/Titles"
+        app:titleCentered="true"
+        app:navigationIcon="@drawable/arrow_back"
+        app:navigationIconTint="@color/gray_nurse"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputInsertarTituloHorario"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_below="@id/encabezadoCrearHorario"
+        android:hint="@string/textoInsertarTituloHorario">
+
+        <EditText
+            android:id="@+id/editInsertarTituloHorario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutCheckboxDias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textInputInsertarTituloHorario"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/checkboxLunes"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dias_base"
+            android:button="@color/transition"
+            android:text="@string/textoLu"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <CheckBox
+            android:id="@+id/checkboxMartes"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dias_base"
+            android:button="@color/transition"
+            android:text="@string/textoMa"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <CheckBox
+            android:id="@+id/checkboxMiercoles"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dias_base"
+            android:button="@color/transition"
+            android:text="@string/textoMi"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <CheckBox
+            android:id="@+id/checkboxJueves"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dias_base"
+            android:button="@color/transition"
+            android:text="@string/textoJu"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <CheckBox
+            android:id="@+id/checkboxViernes"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dias_base"
+            android:button="@color/transition"
+            android:text="@string/textoVi"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <CheckBox
+            android:id="@+id/checkboxSabado"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dias_base"
+            android:button="@color/transition"
+            android:text="@string/textoSa"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <CheckBox
+            android:id="@+id/checkboxDomingo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dias_base"
+            android:button="@color/transition"
+            android:text="@string/textoDo"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/botonSeleccionarHoraInicial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutCheckboxDias"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/textoSeleccionaHoraInicial" />
+
+    <TextView
+        android:id="@+id/textViewHoraIncial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/botonSeleccionarHoraInicial"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:visibility="gone"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/botonSeleccionarHoraFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/textViewHoraIncial"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/textoSeleccionaHoraFinal" />
+
+    <TextView
+        android:id="@+id/textViewHoraFinal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/botonSeleccionarHoraFinal"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:visibility="gone"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/botonRealizarHorario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/done"
+        app:maxImageSize="30sp" />
+
+</RelativeLayout>

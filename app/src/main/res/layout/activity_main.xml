@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/layoutMainActivity"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -28,7 +29,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
         app:startIconDrawable="@drawable/mail"
-        android:hint="Correo"
+        android:hint="@string/textoCorreo"
         app:endIconMode="clear_text">
 
         <EditText
@@ -46,7 +47,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
         app:startIconDrawable="@drawable/lock"
-        android:hint="Contraseña"
+        android:hint="@string/textoContrasena"
         app:endIconMode="password_toggle">
 
         <EditText
@@ -69,7 +70,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Iniciar Sesión"
+        android:text="@string/textoIniciarSesion"
         android:textSize="30sp"/>
 
     <com.google.android.material.button.MaterialButton
@@ -80,7 +81,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
         android:textColor="@color/gray_nurse"
-        android:text="Registrarse"
+        android:text="@string/textoRegistrarse"
         android:textSize="20sp"/>
 
 </LinearLayout>

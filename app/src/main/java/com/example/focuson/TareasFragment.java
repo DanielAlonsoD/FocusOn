@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import adaptadores.AdaptadorTareas;
 import tablas.Tarea;
 
 public class TareasFragment extends Fragment implements View.OnClickListener {
@@ -52,10 +53,9 @@ public class TareasFragment extends Fragment implements View.OnClickListener {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     tareas.add(new Tarea(ds.getKey(), ds.child("nombre").getValue(String.class), ds.child("realizado").getValue(Boolean.class)));
-                    Log.i("id", ds.getKey());
                 }
 
-                adaptador = new AdaptadorTareas(tareas, TareasFragment.this.getContext());
+                adaptador = new AdaptadorTareas(tareas, getActivity().getBaseContext());
                 RecyclerView.LayoutManager layoutManager = new GridLayoutManager(TareasFragment.this.getContext(), 1);
                 lista.setAdapter(adaptador);
                 lista.setLayoutManager(layoutManager);
@@ -72,9 +72,9 @@ public class TareasFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        View alertaInsertarTexto = LayoutInflater.from(this.getContext()).inflate(R.layout.alerta_insertar_texto, null);
-        EditText editTextTextoAlerta =  alertaInsertarTexto.findViewById(R.id.editTextTextoAlerta);
-        new MaterialAlertDialogBuilder(this.getContext(), R.style.Alertas).setTitle("Crea una Tarea").setView(alertaInsertarTexto)
+        View alertaCrearTarea = LayoutInflater.from(this.getContext()).inflate(R.layout.alerta_crear_editar_tarea_subtarea, null);
+        EditText editTextTextoAlerta =  alertaCrearTarea.findViewById(R.id.editTextTextoAlerta);
+        new MaterialAlertDialogBuilder(this.getContext(), R.style.Alertas).setTitle(R.string.textoCreaUnaTarea).setView(alertaCrearTarea)
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

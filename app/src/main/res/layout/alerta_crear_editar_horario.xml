@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/layoutAlertaCrearEditarHorario"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputInsertarTituloHorario"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/textoInsertarTituloHorario">
+
+        <EditText
+            android:id="@+id/editInsertarTituloHorario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutCheckboxDias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textInputInsertarTituloHorario"
+        android:layout_marginHorizontal="20dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/checkboxLunes"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dias_base"
+            android:button="@color/transition"
+            android:text="@string/textoLu"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <CheckBox
+            android:id="@+id/checkboxMartes"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dias_base"
+            android:button="@color/transition"
+            android:text="@string/textoMa"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <CheckBox
+            android:id="@+id/checkboxMiercoles"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dias_base"
+            android:button="@color/transition"
+            android:text="@string/textoMi"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <CheckBox
+            android:id="@+id/checkboxJueves"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dias_base"
+            android:button="@color/transition"
+            android:text="@string/textoJu"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <CheckBox
+            android:id="@+id/checkboxViernes"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dias_base"
+            android:button="@color/transition"
+            android:text="@string/textoVi"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <CheckBox
+            android:id="@+id/checkboxSabado"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dias_base"
+            android:button="@color/transition"
+            android:text="@string/textoSa"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <CheckBox
+            android:id="@+id/checkboxDomingo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/dias_base"
+            android:button="@color/transition"
+            android:text="@string/textoDo"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/checkboxRepetirCadaSemana"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/layoutCheckboxDias"
+        android:text="@string/textoRepetirCadaSemana"
+        android:fontFamily="@font/montserrat_semibold"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/botonSeleccionarHoraInicial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/checkboxRepetirCadaSemana"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/textoSeleccionaHoraInicial" />
+
+    <TextView
+        android:id="@+id/textViewHoraIncial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/botonSeleccionarHoraInicial"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:visibility="gone"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/botonSeleccionarHoraFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewHoraIncial"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/textoSeleccionaHoraFinal" />
+
+    <TextView
+        android:id="@+id/textViewHoraFinal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/botonSeleccionarHoraFinal"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:visibility="gone"/>
+
+</RelativeLayout>

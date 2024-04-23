@@ -1,64 +1,96 @@
 package com.example.focuson;
 
+import android.app.TimePickerDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HorariosFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class HorariosFragment extends Fragment {
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Calendar;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+import adaptadores.AdaptadorHorarios;
+import adaptadores.AdaptadorTareas;
+import tablas.Horario;
+import tablas.Tarea;
+
+public class HorariosFragment extends Fragment implements View.OnClickListener {
+    private AdaptadorHorarios adaptador;
+    private ArrayList<Horario> horarios = new ArrayList<>();
+    private DatabaseReference baseDeDatos;
 
     public HorariosFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HorariosFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HorariosFragment newInstance(String param1, String param2) {
-        HorariosFragment fragment = new HorariosFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        getParentFragmentManager().beginTransaction().detach(HorariosFragment.this).attach(HorariosFragment.this).commit();
+
+        View elemento = inflater.inflate(R.layout.fragment_horarios, container, false);
+
+        FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+        baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Horarios");
+
+        RecyclerView listaHorarios = elemento.findViewById(R.id.listaHorarios);
+        FloatingActionButton botonCrear = elemento.findViewById(R.id.botonCrearHorario);
+
+        baseDeDatos.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    String id = ds.getKey();
+                    String titulo = ds.child("titulo").getValue(String.class);
+                    String diasSemana = ds.child("diasSemana").getValue(String.class);
+                    String horaInicio = ds.child("horaInicio").getValue(String.class);
+                    String horaFinal = ds.child("horaFinal").getValue(String.class);
+                    horarios.add(new Horario(id, titulo, diasSemana, horaInicio, horaFinal));
+                }
+
+                adaptador = new AdaptadorHorarios(horarios, getActivity().getBaseContext());
+                RecyclerView.LayoutManager layoutManager = new GridLayoutManager(HorariosFragment.this.getContext(), 1);
+                listaHorarios.setAdapter(adaptador);
+                listaHorarios.setLayoutManager(layoutManager);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+
+        botonCrear.setOnClickListener(this);
+
+        return elemento;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_horarios, container, false);
+    public void onClick(View v) {
+        Intent actividadCrearHorario = new Intent(this.getContext(), CrearHorario.class);
+        startActivity(actividadCrearHorario);
     }
 }
