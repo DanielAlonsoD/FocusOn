@@ -49,7 +49,7 @@ public class AdaptadorHorarios extends RecyclerView.Adapter<AdaptadorHorarios.Vi
             @Override
             public void onClick(View v) {
                 FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
-                FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Horario").child(horario.getId()).removeValue();
+                FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Horarios").child(horario.getId()).removeValue();
                 horarios.remove(horario);
             }
         });

@@ -1,5 +1,6 @@
 package com.example.focuson;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
@@ -76,11 +77,12 @@ public class TareasFragment extends Fragment implements View.OnClickListener {
         EditText editTextTextoAlerta =  alertaCrearTarea.findViewById(R.id.editTextTextoAlerta);
         new MaterialAlertDialogBuilder(this.getContext(), R.style.Alertas).setTitle(R.string.textoCreaUnaTarea).setView(alertaCrearTarea)
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Tarea tarea = new Tarea(editTextTextoAlerta.getText().toString(), false);
                         baseDeDatos.push().setValue(tarea);
-                        getParentFragmentManager().beginTransaction().detach(TareasFragment.this).attach(TareasFragment.this).commit();
+                        adaptador.notifyDataSetChanged();
                     }
                 })
                 .setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
