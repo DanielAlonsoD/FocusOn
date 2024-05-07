@@ -1,7 +1,5 @@
 package com.example.focuson;
 
-import android.app.TimePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,14 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.TimePicker;
 
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,36 +21,31 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 
-import adaptadores.AdaptadorHorarios;
-import adaptadores.AdaptadorTareas;
-import tablas.Horario;
-import tablas.Tarea;
+import adaptadores.AdaptadorRutinas;
+import tablas.Rutina;
 
-public class HorariosFragment extends Fragment implements View.OnClickListener {
-    private AdaptadorHorarios adaptador;
-    private ArrayList<Horario> horarios = new ArrayList<>();
+public class RutinasFragment extends Fragment implements View.OnClickListener {
+    private AdaptadorRutinas adaptador;
+    private ArrayList<Rutina> rutinas = new ArrayList<>();
     private DatabaseReference baseDeDatos;
 
-    public HorariosFragment() {
+    public RutinasFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        getParentFragmentManager().beginTransaction().detach(HorariosFragment.this).attach(HorariosFragment.this).commit();
+        getParentFragmentManager().beginTransaction().detach(RutinasFragment.this).attach(RutinasFragment.this).commit();
 
-        View elemento = inflater.inflate(R.layout.fragment_horarios, container, false);
+        View elemento = inflater.inflate(R.layout.fragment_rutinas, container, false);
 
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
-        baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Horarios");
+        baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Rutinas");
 
-        RecyclerView listaHorarios = elemento.findViewById(R.id.listaHorarios);
-        FloatingActionButton botonCrear = elemento.findViewById(R.id.botonCrearHorario);
+        RecyclerView listaRutinas = elemento.findViewById(R.id.listaRutinas);
+        FloatingActionButton botonCrear = elemento.findViewById(R.id.botonCrearRutina);
 
         baseDeDatos.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -70,13 +56,13 @@ public class HorariosFragment extends Fragment implements View.OnClickListener {
                     String diasSemana = ds.child("diasSemana").getValue(String.class);
                     String horaInicio = ds.child("horaInicio").getValue(String.class);
                     String horaFinal = ds.child("horaFinal").getValue(String.class);
-                    horarios.add(new Horario(id, titulo, diasSemana, horaInicio, horaFinal));
+                    rutinas.add(new Rutina(id, titulo, diasSemana, horaInicio, horaFinal));
                 }
 
-                adaptador = new AdaptadorHorarios(horarios, getActivity().getBaseContext());
-                RecyclerView.LayoutManager layoutManager = new GridLayoutManager(HorariosFragment.this.getContext(), 1);
-                listaHorarios.setAdapter(adaptador);
-                listaHorarios.setLayoutManager(layoutManager);
+                adaptador = new AdaptadorRutinas(rutinas, getActivity().getBaseContext());
+                RecyclerView.LayoutManager layoutManager = new GridLayoutManager(RutinasFragment.this.getContext(), 1);
+                listaRutinas.setAdapter(adaptador);
+                listaRutinas.setLayoutManager(layoutManager);
             }
 
             @Override
@@ -90,7 +76,7 @@ public class HorariosFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent actividadCrearHorario = new Intent(this.getContext(), CrearHorario.class);
-        startActivity(actividadCrearHorario);
+        Intent actividadCrearRutina = new Intent(this.getContext(), CrearRutina.class);
+        startActivity(actividadCrearRutina);
     }
 }

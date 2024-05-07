@@ -5,6 +5,8 @@
     <string name="textoCorreo">Correo</string>
     <string name="textoContrasena">Contraseña</string>
     <string name="textoRegistrarse">Registrarse</string>
+    <string name="textoHorasMinutosSegundos">hh:MM:ss</string>
+    <string name="textoIniciar">Iniciar</string>
     <string name="textoEliminar">Eliminar</string>
 
     <!--Main Activity-->
@@ -16,28 +18,41 @@
     <string name="textoConfirmarContrasena">Confirmar Contraseña</string>
 
     <!--Menu Principal-->
-    <string name="textoTareas">Tareas</string>
-    <string name="textoHorarios">Horarios</string>
-    <string name="textoTemporizadores">Temporizadores</string>
+    <string name="textoTareas">TAREAS</string>
+    <string name="textoRutinas">RUTINAS</string>
+    <string name="textoTemporizadores">TEMPORIZADORES</string>
+
 
     <!--Opciones Tareas y Subtareas-->
     <string name="textoCrearSubtarea">Crear Subtarea</string>
     <string name="textoEditar">Editar</string>
 
     <!--Alert Dialog-->
-    <string name="textoCreaUnaTarea">Crea una Tarea</string>
-    <string name="textoCreaUnaSubtarea">Crea una Subtarea</string>
     <string name="textoOk">Ok</string>
+    <string name="textoSi">Sí</string>
     <string name="textoCancelar">Cancelar</string>
 
     <!--Alerta Crear Editar Tarea Subtarea-->
+    <string name="textoCreaUnaTarea">Crea una Tarea</string>
+    <string name="textoCreaUnaSubtarea">Crea una Subtarea</string>
+    <string name="textoEditarTarea">Editar Tarea</string>
+    <string name="textoEditarSubtarea">Editar Subtarea</string>
+    <string name="textoBorrarTarea">Borrar Tarea</string>
+    <string name="textoBorrarSubtarea">Borrar Subtarea</string>
     <string name="textoInsertarTituloTarea">Inserta el título de la Tarea</string>
+    <string name="textoInsertarTituloSubtarea">Inserta el título de la Subtarea</string>
+    <string name="descripcionBorrarTarea">¿Estás seguro de borrar la Tarea?</string>
+    <string name="descripcionBorrarSubtarea">¿Estás seguro de borrar la Subtarea?</string>
 
-    <!--Crear Horario Activity-->
-    <string name="textoCrearHorario">Crear Horario</string>
+    <!--Alerta Borrar Rutina-->
+    <string name="textoBorrarRutina">Borrar Rutina</string>
+    <string name="descripcionBorrarRutina">¿Estás seguro de borrar la Rutina?</string>
 
-    <!--Alerta Crear Editar Horario-->
-    <string name="textoInsertarTituloHorario">Inserta un título para el horario</string>
+    <!--Alerta Borrar Temporizador-->
+
+    <!--Crear Rutina Activity-->
+    <string name="textoCrearRutina">Crear Rutina</string>
+    <string name="textoInsertarTituloRutina">Inserta un título para la rutina</string>
     <string name="textoLu">Lu</string>
     <string name="textoMa">Ma</string>
     <string name="textoMi">Mi</string>
@@ -48,6 +63,10 @@
     <string name="textoRepetirCadaSemana">Repetir cada semana</string>
     <string name="textoSeleccionaHoraInicial">Selecciona la Hora Inicial</string>
     <string name="textoSeleccionaHoraFinal">Selecciona la Hora Final</string>
+
+    <!--Elemento Temporizador-->
+    <string name="textoTrabajo">Trabajo</string>
+    <string name="textoDescanso">Descanso</string>
 
     <!--Snackbars errores-->
     <string name="textoErrorDatosVacios">Debes rellenar todos los datos antes.</string>

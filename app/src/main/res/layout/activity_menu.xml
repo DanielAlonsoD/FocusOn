@@ -8,13 +8,28 @@
     android:layout_height="match_parent"
     tools:context=".MenuActivity">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/encabezadoMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/scampi"
+        app:title="@string/textoTareas"
+        app:titleTextColor="@color/gray_nurse"
+        app:titleTextAppearance="@style/Titles"
+        app:titleCentered="true"
+        app:navigationIconTint="@color/gray_nurse"
+        app:menu="@menu/opciones_menu_principal"/>
+
     <fragment
         android:id="@+id/contenedorFragmentos"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/barraInferiorOpciones"
-        app:navGraph="@navigation/navegacion_principal"/>
+        android:layout_below="@id/encabezadoMenu"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        app:navGraph="@navigation/navegacion_principal" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/barraInferiorOpciones"

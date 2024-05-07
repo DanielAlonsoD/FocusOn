@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/layoutElementoHorario"
+<RelativeLayout android:id="@+id/layoutElementoRutina"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/textViewTituloHorario"
+        android:id="@+id/textViewTituloRutina"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/textoTitulo"
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/textViewTituloHorario"
+        android:layout_below="@id/textViewTituloRutina"
         android:text="@string/textoDiasSemana"
         android:fontFamily="@font/montserrat_semibold"
         android:textAlignment="center"
@@ -36,7 +36,7 @@
         android:textSize="18sp"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/botonEliminarHorario"
+        android:id="@+id/botonEliminarRutinas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -49,10 +49,10 @@
         android:textSize="15sp"/>
 
     <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/divisorDeHorarios"
+        android:id="@+id/divisorDeRutinas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/botonEliminarHorario"
+        android:layout_alignBottom="@id/botonEliminarRutinas"
         android:scaleY="3"
         app:dividerColor="@color/blue_bell"/>
 

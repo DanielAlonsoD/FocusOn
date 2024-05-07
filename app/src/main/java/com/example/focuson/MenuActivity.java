@@ -9,11 +9,13 @@ import androidx.navigation.Navigation;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MenuActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
     private NavController navController;
+    private MaterialToolbar encabezado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationBarView
         };
         getOnBackPressedDispatcher().addCallback(this, haciaAtras);
 
+        encabezado = findViewById(R.id.encabezadoMenu);
         BottomNavigationView barraInferior = findViewById(R.id.barraInferiorOpciones);
         barraInferior.setOnItemSelectedListener(this::onNavigationItemSelected);
 
@@ -38,12 +41,15 @@ public class MenuActivity extends AppCompatActivity implements NavigationBarView
         if (item.getItemId() == R.id.itemTareas) {
             realizado = true;
             navController.navigate(R.id.tareasFragment);
+            encabezado.setTitle(R.string.textoTareas);
         } else if (item.getItemId() == R.id.itemHorarios) {
             realizado = true;
             navController.navigate(R.id.horariosFragment);
+            encabezado.setTitle(R.string.textoRutinas);
         } else if (item.getItemId() == R.id.itemCronometros) {
             realizado = true;
             navController.navigate(R.id.cronometrosFragment);
+            encabezado.setTitle(R.string.textoTemporizadores);
         }
         return realizado;
     }

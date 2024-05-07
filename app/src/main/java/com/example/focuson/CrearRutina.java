@@ -3,7 +3,6 @@ package com.example.focuson;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -26,9 +25,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
-import tablas.Horario;
+import tablas.Rutina;
 
-public class CrearHorario extends AppCompatActivity implements View.OnClickListener {
+public class CrearRutina extends AppCompatActivity implements View.OnClickListener {
     private DatabaseReference baseDeDatos;
     private EditText editInsertarTituloHorario;
     private TextView textViewHoraIncial, textViewHoraFinal;
@@ -37,12 +36,12 @@ public class CrearHorario extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear_horario);
+        setContentView(R.layout.activity_crear_rutina);
 
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
-        baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Horarios");
+        baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Rutinas");
 
-        MaterialToolbar encabezado = findViewById(R.id.encabezadoCrearHorario);
+        MaterialToolbar encabezado = findViewById(R.id.encabezadoCrearRutina);
         editInsertarTituloHorario =  findViewById(R.id.editInsertarTituloHorario);
         CheckBox[] checkboxesDias = creadorCheckboxHorario();
         MaterialButton botonSeleccionarHoraInicial = findViewById(R.id.botonSeleccionarHoraInicial);
@@ -65,9 +64,7 @@ public class CrearHorario extends AppCompatActivity implements View.OnClickListe
                 textView = textViewHoraIncial;
             }
             TextView finalTextView = textView;
-            Calendar horario = Calendar.getInstance();
-            int hora = horario.get(Calendar.HOUR);
-            int minuto = horario.get(Calendar.MINUTE);
+
             TimePickerDialog selectorHora = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -76,7 +73,7 @@ public class CrearHorario extends AppCompatActivity implements View.OnClickListe
                     finalTextView.setText(horaYMinuto.format(formateadorDeHora));
                     finalTextView.setVisibility(View.VISIBLE);
                 }
-            }, hora, minuto, true);
+            }, 0, 0, true);
             selectorHora.show();
         } else if (v.getId() == R.id.botonRealizarHorario) {
             String tituloHorario = editInsertarTituloHorario.getText().toString();
@@ -88,8 +85,8 @@ public class CrearHorario extends AppCompatActivity implements View.OnClickListe
                 RelativeLayout layoutCrearHorario = findViewById(R.id.layoutCrearHorario);
                 Snackbar.make(layoutCrearHorario, R.string.textoErrorDatosVacios, Snackbar.LENGTH_SHORT).show();
             } else {
-                Horario horario = new Horario(tituloHorario, diasTotales, horaIncial, horaFinal);
-                baseDeDatos.push().setValue(horario);
+                Rutina rutina = new Rutina(tituloHorario, diasTotales, horaIncial, horaFinal);
+                baseDeDatos.push().setValue(rutina);
                 getOnBackPressedDispatcher().onBackPressed();
             }
         } else {

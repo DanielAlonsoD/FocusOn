@@ -12,12 +12,12 @@
 
     <fragment
         android:id="@+id/horariosFragment"
-        android:name="com.example.focuson.HorariosFragment"
-        tools:layout="@layout/fragment_horarios"/>
+        android:name="com.example.focuson.RutinasFragment"
+        tools:layout="@layout/fragment_rutinas"/>
 
     <fragment
         android:id="@+id/cronometrosFragment"
-        android:name="com.example.focuson.CronometrosFragment"
-        tools:layout="@layout/fragment_cronometros"/>
+        android:name="com.example.focuson.TemporizadoresFragment"
+        tools:layout="@layout/fragment_temporizadores"/>
 
 </navigation>

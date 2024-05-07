@@ -1,10 +1,10 @@
 package com.example.focuson;
 
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import adaptadores.AdaptadorTareas;
+import tablas.Subtarea;
 import tablas.Tarea;
 
 public class TareasFragment extends Fragment implements View.OnClickListener {
@@ -37,6 +38,12 @@ public class TareasFragment extends Fragment implements View.OnClickListener {
 
     public TareasFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -53,11 +60,29 @@ public class TareasFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
-                    tareas.add(new Tarea(ds.getKey(), ds.child("nombre").getValue(String.class), ds.child("realizado").getValue(Boolean.class)));
+                    String tareaId = ds.getKey();
+                    String nombre = ds.child("nombre").getValue(String.class);
+                    boolean realizado = ds.child("realizado").getValue(Boolean.class);
+                    Tarea tarea = new Tarea(tareaId, nombre, realizado, new ArrayList<>());
+                    DatabaseReference baseSubtareas = baseDeDatos.child(tareaId).child("Subtareas");
+                    baseSubtareas.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            ArrayList<Subtarea> subtareas = new ArrayList<>();
+                            for (DataSnapshot ds2 : snapshot.getChildren()) {
+                                subtareas.add(new Subtarea(ds2.getKey(), ds2.child("nombre").getValue(String.class), ds2.child("realizado").getValue(Boolean.class)));
+                            }
+                            tarea.setSubtareas(subtareas);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {}
+                    });
+                    tareas.add(tarea);
                 }
 
-                adaptador = new AdaptadorTareas(tareas, getActivity().getBaseContext());
-                RecyclerView.LayoutManager layoutManager = new GridLayoutManager(TareasFragment.this.getContext(), 1);
+                adaptador = new AdaptadorTareas(tareas, TareasFragment.this.getContext());
+                RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(), 1);
                 lista.setAdapter(adaptador);
                 lista.setLayoutManager(layoutManager);
             }
@@ -77,12 +102,14 @@ public class TareasFragment extends Fragment implements View.OnClickListener {
         EditText editTextTextoAlerta =  alertaCrearTarea.findViewById(R.id.editTextTextoAlerta);
         new MaterialAlertDialogBuilder(this.getContext(), R.style.Alertas).setTitle(R.string.textoCreaUnaTarea).setView(alertaCrearTarea)
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Tarea tarea = new Tarea(editTextTextoAlerta.getText().toString(), false);
-                        baseDeDatos.push().setValue(tarea);
-                        adaptador.notifyDataSetChanged();
+                        String textoAlerta = editTextTextoAlerta.getText().toString().trim();
+                        if (!textoAlerta.isEmpty()) {
+                            Tarea tarea = new Tarea(editTextTextoAlerta.getText().toString(), false, new ArrayList<Subtarea>(){});
+                            baseDeDatos.push().setValue(tarea);
+                            getParentFragmentManager().beginTransaction().detach(TareasFragment.this).attach(TareasFragment.this).commit();
+                        }
                     }
                 })
                 .setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {

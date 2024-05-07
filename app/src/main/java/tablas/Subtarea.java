@@ -1,28 +1,17 @@
 package tablas;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Tarea {
+public class Subtarea {
     private String id;
     private String nombre;
     private boolean realizado;
-    private ArrayList<Subtarea> subtareas;
 
-    public Tarea(String nombre, boolean realizado, ArrayList<Subtarea> subtareas) {
-        this.nombre = nombre;
-        this.realizado = realizado;
-        this.subtareas = subtareas;
-    }
-
-    public Tarea(String id, String nombre, boolean realizado, ArrayList<Subtarea> subtareas) {
+    public Subtarea(String id, String nombre, boolean realizado) {
         this.id = id;
         this.nombre = nombre;
         this.realizado = realizado;
-        this.subtareas = subtareas;
     }
 
-    public Tarea(String nombre, boolean realizado) {
+    public Subtarea(String nombre, boolean realizado) {
         this.nombre = nombre;
         this.realizado = realizado;
     }
@@ -49,13 +38,5 @@ public class Tarea {
 
     public void setRealizado(boolean realizado) {
         this.realizado = realizado;
-    }
-
-    public ArrayList<Subtarea> getSubtareas() {
-        return subtareas;
-    }
-
-    public void setSubtareas(ArrayList<Subtarea> subtareas) {
-        this.subtareas = subtareas;
     }
 }

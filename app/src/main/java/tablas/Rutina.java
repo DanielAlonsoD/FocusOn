@@ -1,20 +1,20 @@
 package tablas;
 
-public class Horario {
+public class Rutina {
     private String id;
     private String titulo;
     private String diasSemana;
     private String horaInicio;
     private String horaFinal;
 
-    public Horario(String titulo, String diasSemana, String horaInicio, String horaFinal) {
+    public Rutina(String titulo, String diasSemana, String horaInicio, String horaFinal) {
         this.titulo = titulo;
         this.diasSemana = diasSemana;
         this.horaInicio = horaInicio;
         this.horaFinal = horaFinal;
     }
 
-    public Horario(String id, String titulo, String diasSemana, String horaIncio, String horaFinal) {
+    public Rutina(String id, String titulo, String diasSemana, String horaIncio, String horaFinal) {
         this.id = id;
         this.titulo = titulo;
         this.diasSemana = diasSemana;
