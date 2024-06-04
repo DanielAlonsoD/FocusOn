@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/imagenIdentificadorTarea"
-        android:layout_width="wrap_content"
+        android:layout_width="20"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_above="@id/divisorTareaSubtarea"
@@ -22,6 +22,7 @@
         android:paddingTop="5dp"
         android:layout_toEndOf="@id/imagenIdentificadorTarea"
         android:layout_toStartOf="@id/imagenSubtareasVisibles"
+        android:layout_marginStart="5dp"
         android:paddingBottom="10dp"
         android:text="@string/textoTitulo"
         android:fontFamily="@font/montserrat_semibold"
