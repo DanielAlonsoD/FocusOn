@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Paint;
 import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -62,6 +62,22 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
         Tarea tarea = tareas.get(position);
         holder.representacionElementos(tarea, contexto, baseDeDatos);
 
+        holder.imagenSubtareasVisibles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.mostrarSubtareas();
+                notifyDataSetChanged();
+            }
+        });
+
+        holder.imagenSubtareasNoVisibles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.mostrarSubtareas();
+                notifyDataSetChanged();
+            }
+        });
+
         holder.checkRealizada.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -74,7 +90,7 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
             public void onClick(View v) {
                 PopupMenu menu = new PopupMenu(contexto, holder.botonMasOpciones);
                 menu.getMenuInflater().inflate(R.menu.opciones_tarea, menu.getMenu());
-                menuDeOpciones(menu, v, tarea);
+                menuDeOpciones(menu, v, tarea, holder);
                 menu.show();
             }
         });
@@ -85,12 +101,12 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
         return tareas.size();
     }
 
-    public void menuDeOpciones(PopupMenu menu, View v, Tarea tarea) {
+    public void menuDeOpciones(PopupMenu menu, View v, Tarea tarea, AdaptadorTareas.ViewHolder holder) {
         menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.itemCrearSubtarea) {
-                    crearSubtarea(v, tarea);
+                    crearSubtarea(v, tarea, holder);
                 } else if (item.getItemId() == R.id.itemEditarTarea) {
                     editarTarea(v, tarea);
                 } else {
@@ -101,7 +117,7 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
         });
     }
 
-    public void crearSubtarea(View v, Tarea tarea) {
+    public void crearSubtarea(View v, Tarea tarea, AdaptadorTareas.ViewHolder holder) {
         View alertaInsertarTexto = LayoutInflater.from(v.getContext()).inflate(R.layout.alerta_crear_editar_tarea_subtarea, null);
         TextInputLayout textInputTextoAlerta = alertaInsertarTexto.findViewById(R.id.textInputTextoAlerta);
         textInputTextoAlerta.setHint(R.string.textoInsertarTituloSubtarea);
@@ -113,13 +129,18 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
                 String textoAlerta = editTextTextoAlerta.getText().toString().trim();
                 if (!textoAlerta.isEmpty()) {
                     Subtarea subtarea = new Subtarea(editTextTextoAlerta.getText().toString(), false);
-                    baseDeDatos.child(tarea.getId()).child("Subtareas").push().setValue(subtarea);
+                    String subtareaId = baseDeDatos.push().getKey();
+                    baseDeDatos.child(tarea.getId()).child("Subtareas").child(subtareaId).setValue(subtarea);
+                    subtarea.setId(subtareaId);
                     ArrayList<Subtarea> subtareas = new ArrayList<>();
                     if (tarea.getSubtareas() != null) {
                         subtareas = tarea.getSubtareas();
                     }
                     subtareas.add(subtarea);
                     tarea.setSubtareas(subtareas);
+                    if (holder.imagenSubtareasNoVisibles.getVisibility() == View.VISIBLE) {
+                        holder.mostrarSubtareas();
+                    }
                     notifyDataSetChanged();
                 }
             }
@@ -168,6 +189,7 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textoTarea;
+        public ImageButton imagenSubtareasVisibles, imagenSubtareasNoVisibles;
         public CheckBox checkRealizada;
         public ImageButton botonMasOpciones;
         public RecyclerView listaSubtareas;
@@ -177,6 +199,8 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textoTarea = itemView.findViewById(R.id.textoTarea);
+            imagenSubtareasVisibles = itemView.findViewById(R.id.imagenSubtareasVisibles);
+            imagenSubtareasNoVisibles = itemView.findViewById(R.id.imagenSubtareasNoVisibles);
             checkRealizada = itemView.findViewById(R.id.checkRealizado);
             botonMasOpciones = itemView.findViewById(R.id.botonMasOpciones);
             listaSubtareas = itemView.findViewById(R.id.listaSubtareas);
@@ -186,12 +210,13 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
             textoTarea.setText(tarea.getNombre());
             checkRealizada.setChecked(tarea.isRealizado());
             isRealizado(tarea.isRealizado(), textoTarea, tarea.getId(), baseDeDatos);
-            if (tarea.getSubtareas().size()>=1) {
-                Log.i("Contexto", context.toString());
+            if (tarea.getSubtareas().size()>=1 && imagenSubtareasVisibles.getVisibility() == View.VISIBLE) {
                 adaptador = new AdaptadorSubtareas(tarea.getSubtareas(), context, tarea.getId());
                 RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context, 1);
                 listaSubtareas.setAdapter(adaptador);
                 listaSubtareas.setLayoutManager(layoutManager);
+            } else {
+                listaSubtareas.setAdapter(null);
             }
         }
 
@@ -202,6 +227,16 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
             } else {
                 textoTarea.setPaintFlags(textoTarea.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
                 baseDeDatos.child(id).child("realizado").setValue(false);
+            }
+        }
+
+        public void mostrarSubtareas() {
+            if (imagenSubtareasVisibles.getVisibility() == View.INVISIBLE) {
+                imagenSubtareasNoVisibles.setVisibility(View.INVISIBLE);
+                imagenSubtareasVisibles.setVisibility(View.VISIBLE);
+            } else {
+                imagenSubtareasVisibles.setVisibility(View.INVISIBLE);
+                imagenSubtareasNoVisibles.setVisibility(View.VISIBLE);
             }
         }
     }

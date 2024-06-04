@@ -35,6 +35,7 @@ public class TareasFragment extends Fragment implements View.OnClickListener {
     private AdaptadorTareas adaptador;
     private ArrayList<Tarea> tareas = new ArrayList<>();
     private DatabaseReference baseDeDatos;
+    private boolean leido;
 
     public TareasFragment() {
         // Required empty public constructor
@@ -64,20 +65,30 @@ public class TareasFragment extends Fragment implements View.OnClickListener {
                     String nombre = ds.child("nombre").getValue(String.class);
                     boolean realizado = ds.child("realizado").getValue(Boolean.class);
                     Tarea tarea = new Tarea(tareaId, nombre, realizado, new ArrayList<>());
-                    DatabaseReference baseSubtareas = baseDeDatos.child(tareaId).child("Subtareas");
-                    baseSubtareas.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            ArrayList<Subtarea> subtareas = new ArrayList<>();
-                            for (DataSnapshot ds2 : snapshot.getChildren()) {
-                                subtareas.add(new Subtarea(ds2.getKey(), ds2.child("nombre").getValue(String.class), ds2.child("realizado").getValue(Boolean.class)));
-                            }
-                            tarea.setSubtareas(subtareas);
-                        }
+                    if (ds.hasChild("Subtareas")) {
+                        leido = false;
+                        DatabaseReference baseSubtareas = baseDeDatos.child(tareaId).child("Subtareas");
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {}
-                    });
+                        while (!leido) {
+                            baseSubtareas.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    ArrayList<Subtarea> subtareas = new ArrayList<>();
+                                    for (DataSnapshot ds2 : snapshot.getChildren()) {
+                                        subtareas.add(new Subtarea(ds2.getKey(), ds2.child("nombre").getValue(String.class), ds2.child("realizado").getValue(Boolean.class)));
+                                    }
+                                    tarea.setSubtareas(subtareas);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    Log.i("Error", error.getDetails());
+                                }
+                            });
+                            leido = true;
+                        }
+                    }
+
                     tareas.add(tarea);
                 }
 

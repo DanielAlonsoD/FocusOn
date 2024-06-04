@@ -6,12 +6,22 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ImageView
+        android:id="@+id/imagenIdentificadorTarea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/divisorTareaSubtarea"
+        android:src="@drawable/fiber_manual_record"
+        app:tint="@color/scampi"/>
+
     <TextView
         android:id="@+id/textoTarea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="5dp"
-        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@id/imagenIdentificadorTarea"
+        android:layout_toStartOf="@id/imagenSubtareasVisibles"
         android:paddingBottom="10dp"
         android:text="@string/textoTitulo"
         android:fontFamily="@font/montserrat_semibold"
@@ -30,10 +40,35 @@
         android:scaleX="2"
         android:scaleY="2"/>
 
+    <ImageButton
+        android:id="@+id/imagenSubtareasVisibles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/botonMasOpciones"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/divisorTareaSubtarea"
+        android:layout_marginEnd="35dp"
+        android:src="@drawable/visibility"
+        android:backgroundTint="@color/gray_nurse"
+        android:visibility="invisible"/>
+
+    <ImageButton
+        android:id="@+id/imagenSubtareasNoVisibles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/botonMasOpciones"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/divisorTareaSubtarea"
+        android:layout_marginEnd="35dp"
+        android:src="@drawable/visibility_off"
+        android:backgroundTint="@color/gray_nurse"/>
+
     <CheckBox
         android:id="@+id/checkRealizado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/divisorTareaSubtarea"
         android:layout_toStartOf="@id/botonMasOpciones"/>
 
     <com.google.android.material.divider.MaterialDivider

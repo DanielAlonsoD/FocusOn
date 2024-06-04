@@ -156,7 +156,6 @@ public class AdaptadorSubtareas extends RecyclerView.Adapter<AdaptadorSubtareas.
                 baseDeDatos.child(id).child("realizado").setValue(true);
             } else {
                 textoTarea.setPaintFlags(textoTarea.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-                Log.i("Ruta", baseDeDatos.child(id).child("realizado").toString());
                 baseDeDatos.child(id).child("realizado").setValue(false);
             }
         }
