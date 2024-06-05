@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:id="@+id/layoutCrearHorario"
+    android:id="@+id/layoutCrearRutina"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CrearRutina">
+    tools:context=".CrearRutinaActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/encabezadoCrearRutina"
@@ -21,7 +21,7 @@
         app:navigationIconTint="@color/gray_nurse"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputInsertarTituloHorario"
+        android:id="@+id/textInputInsertarTituloRutina"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         android:hint="@string/textoInsertarTituloRutina">
 
         <EditText
-            android:id="@+id/editInsertarTituloHorario"
+            android:id="@+id/editInsertarTituloRutina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_semibold"/>
@@ -42,20 +42,20 @@
         android:id="@+id/layoutCheckboxDias"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textInputInsertarTituloHorario"
+        android:layout_below="@id/textInputInsertarTituloRutina"
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="20dp"
         android:orientation="horizontal">
 
         <CheckBox
             android:id="@+id/checkboxLunes"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/dias_base"
             android:button="@color/transition"
             android:text="@string/textoLu"
             android:textAlignment="center"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:fontFamily="@font/montserrat_semibold"/>
 
         <Space
@@ -65,13 +65,13 @@
 
         <CheckBox
             android:id="@+id/checkboxMartes"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/dias_base"
             android:button="@color/transition"
             android:text="@string/textoMa"
             android:textAlignment="center"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:fontFamily="@font/montserrat_semibold"/>
 
         <Space
@@ -81,13 +81,13 @@
 
         <CheckBox
             android:id="@+id/checkboxMiercoles"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/dias_base"
             android:button="@color/transition"
             android:text="@string/textoMi"
             android:textAlignment="center"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:fontFamily="@font/montserrat_semibold"/>
 
         <Space
@@ -97,13 +97,13 @@
 
         <CheckBox
             android:id="@+id/checkboxJueves"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/dias_base"
             android:button="@color/transition"
             android:text="@string/textoJu"
             android:textAlignment="center"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:fontFamily="@font/montserrat_semibold"/>
 
         <Space
@@ -113,13 +113,13 @@
 
         <CheckBox
             android:id="@+id/checkboxViernes"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/dias_base"
             android:button="@color/transition"
             android:text="@string/textoVi"
             android:textAlignment="center"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:fontFamily="@font/montserrat_semibold"/>
 
         <Space
@@ -129,13 +129,13 @@
 
         <CheckBox
             android:id="@+id/checkboxSabado"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/dias_base"
             android:button="@color/transition"
             android:text="@string/textoSa"
             android:textAlignment="center"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:fontFamily="@font/montserrat_semibold"/>
 
         <Space
@@ -145,13 +145,13 @@
 
         <CheckBox
             android:id="@+id/checkboxDomingo"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="@drawable/dias_base"
             android:button="@color/transition"
             android:text="@string/textoDo"
             android:textAlignment="center"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:fontFamily="@font/montserrat_semibold"/>
 
     </LinearLayout>
@@ -195,7 +195,7 @@
         android:visibility="gone"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/botonRealizarHorario"
+        android:id="@+id/botonRealizarRutina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

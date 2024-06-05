@@ -76,7 +76,7 @@ public class RutinasFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent actividadCrearRutina = new Intent(this.getContext(), CrearRutina.class);
+        Intent actividadCrearRutina = new Intent(this.getContext(), CrearRutinaActivity.class);
         startActivity(actividadCrearRutina);
     }
 }

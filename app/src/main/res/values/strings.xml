@@ -49,6 +49,8 @@
     <string name="descripcionBorrarRutina">¿Estás seguro de borrar la Rutina?</string>
 
     <!--Alerta Borrar Temporizador-->
+    <string name="textoBorrarTemporizador">Borrar Temporizador</string>
+    <string name="descripcionBorrarTemporizador">¿Estás seguro de borrar el Temporizador?</string>
 
     <!--Crear Rutina Activity-->
     <string name="textoCrearRutina">Crear Rutina</string>
@@ -63,6 +65,15 @@
     <string name="textoRepetirCadaSemana">Repetir cada semana</string>
     <string name="textoSeleccionaHoraInicial">Selecciona la Hora Inicial</string>
     <string name="textoSeleccionaHoraFinal">Selecciona la Hora Final</string>
+
+    <!--Crear Temporizador Activity-->
+    <string name="textoCrearTemporizador">Crear Temporizador</string>
+    <string name="textoInsertarTituloTemporizador">Inserta un título para el temporizador</string>
+    <string name="textoSeleccionaTiempoTrabajo">Selecciona el Tiempo de Trabajo</string>
+    <string name="textoSeleccionaTiempoDescanso">Selecciona el Tiempo de Descanso</string>
+
+    <!--Iniciar Temporizador-->
+    <string name="textoTemporizador">Temporizador</string>
 
     <!--Elemento Temporizador-->
     <string name="textoTrabajo">Trabajo</string>

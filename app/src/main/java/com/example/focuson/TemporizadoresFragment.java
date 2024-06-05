@@ -55,8 +55,8 @@ public class TemporizadoresFragment extends Fragment implements View.OnClickList
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     String id = ds.getKey();
                     String titulo = ds.child("titulo").getValue(String.class);
-                    String trabajo = ds.child("diasSemana").getValue(String.class);
-                    String descanso = ds.child("horaInicio").getValue(String.class);
+                    String trabajo = ds.child("trabajo").getValue(String.class);
+                    String descanso = ds.child("descanso").getValue(String.class);
                     temporizadores.add(new Temporizador(id, titulo, trabajo, descanso));
                 }
 
@@ -77,6 +77,7 @@ public class TemporizadoresFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-
+        Intent actividadCrearTemporizador = new Intent(this.getContext(), CrearTemporizadorActivity.class);
+        startActivity(actividadCrearTemporizador);
     }
 }

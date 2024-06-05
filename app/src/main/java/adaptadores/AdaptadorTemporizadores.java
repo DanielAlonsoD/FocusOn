@@ -3,6 +3,8 @@ package adaptadores;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.focuson.IniciarTemporizadorActivity;
 import com.example.focuson.R;
+import com.example.focuson.RegistroActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,11 +55,19 @@ public class AdaptadorTemporizadores extends RecyclerView.Adapter<AdaptadorTempo
         Temporizador temporizador = temporizadores.get(position);
         holder.representacionElementos(temporizador);
 
+        holder.botonIniciarTemporizador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent actividadIniciarTemporizador = new Intent(v.getContext(), IniciarTemporizadorActivity.class);
+                v.getContext().startActivity(actividadIniciarTemporizador);
+            }
+        });
+
         holder.botonEliminarTemporizador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MaterialAlertDialogBuilder alerta = new MaterialAlertDialogBuilder(v.getContext(), R.style.Alertas);
-                alerta.setTitle(R.string.textoBorrarRutina).setMessage(R.string.descripcionBorrarRutina)
+                alerta.setTitle(R.string.textoBorrarTemporizador).setMessage(R.string.descripcionBorrarTemporizador)
                         .setPositiveButton(R.string.textoSi, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -92,6 +104,7 @@ public class AdaptadorTemporizadores extends RecyclerView.Adapter<AdaptadorTempo
         @SuppressLint("SetTextI18n")
         public void representacionElementos(Temporizador temporizador) {
             textViewTituloRutina.setText(temporizador.getTitulo());
+            Log.i("Tiempo trabajo", temporizador.getTrabajo());
             textViewMinutosSegundosTrabajo.setText(temporizador.getTrabajo());
             textViewMinutosSegundosDescanso.setText(temporizador.getDescanso());
         }

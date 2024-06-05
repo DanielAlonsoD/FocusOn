@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/layoutCrearTemporizador"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CrearTemporizadorActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/encabezadoCrearTemporizador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/scampi"
+        app:title="@string/textoCrearTemporizador"
+        app:titleTextColor="@color/gray_nurse"
+        app:titleTextAppearance="@style/Titles"
+        app:titleCentered="true"
+        app:navigationIcon="@drawable/arrow_back"
+        app:navigationIconTint="@color/gray_nurse"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputInsertarTituloTemporizador"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_below="@id/encabezadoCrearTemporizador"
+        android:hint="@string/textoInsertarTituloTemporizador">
+
+        <EditText
+            android:id="@+id/editInsertarTituloTemporizador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/botonSeleccionarTiempoTrabajo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textInputInsertarTituloTemporizador"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/textoSeleccionaTiempoTrabajo" />
+
+    <TextView
+        android:id="@+id/textViewTiempoTrabajo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/botonSeleccionarTiempoTrabajo"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:visibility="gone"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/botonSeleccionarTiempoDescanso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewTiempoTrabajo"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/textoSeleccionaTiempoDescanso" />
+
+    <TextView
+        android:id="@+id/textViewTiempoDescanso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/botonSeleccionarTiempoDescanso"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:visibility="gone"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/botonRealizarTemporizador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/done"
+        app:maxImageSize="30sp" />
+
+</RelativeLayout>

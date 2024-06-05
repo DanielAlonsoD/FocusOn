@@ -23,11 +23,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 
 import tablas.Rutina;
 
-public class CrearRutina extends AppCompatActivity implements View.OnClickListener {
+public class CrearRutinaActivity extends AppCompatActivity implements View.OnClickListener {
     private DatabaseReference baseDeDatos;
     private EditText editInsertarTituloHorario;
     private TextView textViewHoraIncial, textViewHoraFinal;
@@ -42,13 +41,13 @@ public class CrearRutina extends AppCompatActivity implements View.OnClickListen
         baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Rutinas");
 
         MaterialToolbar encabezado = findViewById(R.id.encabezadoCrearRutina);
-        editInsertarTituloHorario =  findViewById(R.id.editInsertarTituloHorario);
+        editInsertarTituloHorario =  findViewById(R.id.editInsertarTituloRutina);
         CheckBox[] checkboxesDias = creadorCheckboxHorario();
         MaterialButton botonSeleccionarHoraInicial = findViewById(R.id.botonSeleccionarHoraInicial);
         textViewHoraIncial = findViewById(R.id.textViewHoraIncial);
         MaterialButton botonSeleccionarHoraFinal = findViewById(R.id.botonSeleccionarHoraFinal);
         textViewHoraFinal = findViewById(R.id.textViewHoraFinal);
-        FloatingActionButton botonRealizar = findViewById(R.id.botonRealizarHorario);
+        FloatingActionButton botonRealizar = findViewById(R.id.botonRealizarRutina);
 
         encabezado.setNavigationOnClickListener(this);
         botonSeleccionarHoraInicial.setOnClickListener(this);
@@ -75,14 +74,14 @@ public class CrearRutina extends AppCompatActivity implements View.OnClickListen
                 }
             }, 0, 0, true);
             selectorHora.show();
-        } else if (v.getId() == R.id.botonRealizarHorario) {
+        } else if (v.getId() == R.id.botonRealizarRutina) {
             String tituloHorario = editInsertarTituloHorario.getText().toString();
             String diasTotales = diasSemanaHorario();
             String horaIncial = textViewHoraIncial.getText().toString();
             String horaFinal = textViewHoraFinal.getText().toString();
 
             if (tituloHorario.isEmpty() || diasTotales.isEmpty() || horaIncial.isEmpty() || horaFinal.isEmpty()) {
-                RelativeLayout layoutCrearHorario = findViewById(R.id.layoutCrearHorario);
+                RelativeLayout layoutCrearHorario = findViewById(R.id.layoutCrearRutina);
                 Snackbar.make(layoutCrearHorario, R.string.textoErrorDatosVacios, Snackbar.LENGTH_SHORT).show();
             } else {
                 Rutina rutina = new Rutina(tituloHorario, diasTotales, horaIncial, horaFinal);

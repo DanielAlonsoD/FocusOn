@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputInsertarTituloHorario"
+        android:id="@+id/textInputInsertarTituloRutina"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +14,7 @@
         android:hint="@string/textoInsertarTituloRutina">
 
         <EditText
-            android:id="@+id/editInsertarTituloHorario"
+            android:id="@+id/editInsertarTituloRutina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_semibold"/>
@@ -25,7 +25,7 @@
         android:id="@+id/layoutCheckboxDias"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textInputInsertarTituloHorario"
+        android:layout_below="@id/textInputInsertarTituloRutina"
         android:layout_marginHorizontal="20dp"
         android:orientation="horizontal">
 
