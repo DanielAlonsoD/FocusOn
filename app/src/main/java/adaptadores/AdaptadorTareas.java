@@ -81,7 +81,8 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
         holder.checkRealizada.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                holder.isRealizado(isChecked, holder.textoTarea, tarea.getId(), baseDeDatos);
+                holder.isRealizado(isChecked, holder.textoTarea, tarea, baseDeDatos);
+                notifyDataSetChanged();
             }
         });
 
@@ -209,7 +210,7 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
         public void representacionElementos(Tarea tarea, Context context, DatabaseReference baseDeDatos) {
             textoTarea.setText(tarea.getNombre());
             checkRealizada.setChecked(tarea.isRealizado());
-            isRealizado(tarea.isRealizado(), textoTarea, tarea.getId(), baseDeDatos);
+            isRealizado(tarea.isRealizado(), textoTarea, tarea, baseDeDatos);
             if (tarea.getSubtareas().size()>=1 && imagenSubtareasVisibles.getVisibility() == View.VISIBLE) {
                 adaptador = new AdaptadorSubtareas(tarea.getSubtareas(), context, tarea.getId());
                 RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context, 1);
@@ -220,13 +221,15 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
             }
         }
 
-        public void isRealizado(boolean isChecked, TextView textoTarea, String id, DatabaseReference baseDeDatos) {
+        public void isRealizado(boolean isChecked, TextView textoTarea, Tarea tarea, DatabaseReference baseDeDatos) {
             if (isChecked) {
                 textoTarea.setPaintFlags(textoTarea.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                baseDeDatos.child(id).child("realizado").setValue(true);
+                baseDeDatos.child(tarea.getId()).child("realizado").setValue(true);
+                tarea.setRealizado(true);
             } else {
                 textoTarea.setPaintFlags(textoTarea.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-                baseDeDatos.child(id).child("realizado").setValue(false);
+                baseDeDatos.child(tarea.getId()).child("realizado").setValue(false);
+                tarea.setRealizado(false);
             }
         }
 

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,7 @@ public class AdaptadorTemporizadores extends RecyclerView.Adapter<AdaptadorTempo
         this.contexto = contexto;
         layout = R.layout.elemento_temporizador;
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
-        baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Rutinas");
+        baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Temporizadores");
     }
 
     @NonNull
@@ -59,6 +60,7 @@ public class AdaptadorTemporizadores extends RecyclerView.Adapter<AdaptadorTempo
             @Override
             public void onClick(View v) {
                 Intent actividadIniciarTemporizador = new Intent(v.getContext(), IniciarTemporizadorActivity.class);
+                actividadIniciarTemporizador.putExtra("Temporizador", temporizador);
                 v.getContext().startActivity(actividadIniciarTemporizador);
             }
         });
@@ -104,7 +106,6 @@ public class AdaptadorTemporizadores extends RecyclerView.Adapter<AdaptadorTempo
         @SuppressLint("SetTextI18n")
         public void representacionElementos(Temporizador temporizador) {
             textViewTituloRutina.setText(temporizador.getTitulo());
-            Log.i("Tiempo trabajo", temporizador.getTrabajo());
             textViewMinutosSegundosTrabajo.setText(temporizador.getTrabajo());
             textViewMinutosSegundosDescanso.setText(temporizador.getDescanso());
         }

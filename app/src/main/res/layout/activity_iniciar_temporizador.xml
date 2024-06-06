@@ -20,4 +20,78 @@
         app:navigationIcon="@drawable/arrow_back"
         app:navigationIconTint="@color/gray_nurse"/>
 
+    <RelativeLayout
+        android:id="@+id/layoutDatosTemporizador"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/encabezadoIniciarTemporizador"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/circle">
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textoTipoTiempo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/textoTrabajo"
+                android:textAlignment="center"
+                android:textColor="@color/gray_nurse"
+                android:textSize="40sp"/>
+
+            <TextView
+                android:id="@+id/textoTiempo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:textColor="@color/gray_nurse"
+                android:textSize="40sp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutBotonesIniciarPausar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutDatosTemporizador"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/botonIniciar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            app:icon="@drawable/play_arrow"
+            android:text="@string/textoIniciar"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/botonPausar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/pause"
+            android:text="@string/textoPausar"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/botonReiniciar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutBotonesIniciarPausar"
+        android:layout_centerHorizontal="true"
+        app:icon="@drawable/replay"
+        android:text="@string/textoReiniciar"
+        android:backgroundTint="@color/red"/>
+
 </RelativeLayout>

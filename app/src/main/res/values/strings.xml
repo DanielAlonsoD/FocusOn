@@ -7,6 +7,8 @@
     <string name="textoRegistrarse">Registrarse</string>
     <string name="textoHorasMinutosSegundos">hh:MM:ss</string>
     <string name="textoIniciar">Iniciar</string>
+    <string name="textoPausar">Pausar</string>
+    <string name="textoReiniciar">Reiniciar</string>
     <string name="textoEliminar">Eliminar</string>
 
     <!--Main Activity-->
@@ -69,8 +71,9 @@
     <!--Crear Temporizador Activity-->
     <string name="textoCrearTemporizador">Crear Temporizador</string>
     <string name="textoInsertarTituloTemporizador">Inserta un título para el temporizador</string>
-    <string name="textoSeleccionaTiempoTrabajo">Selecciona el Tiempo de Trabajo</string>
-    <string name="textoSeleccionaTiempoDescanso">Selecciona el Tiempo de Descanso</string>
+    <string name="textoInsertarTiempoTrabajo">Tiempo de Trabajo:</string>
+    <string name="textoInsertarTiempoDescanso">Tiempo de Descanso:</string>
+    <string name="textoDosPuntos">:</string>
 
     <!--Iniciar Temporizador-->
     <string name="textoTemporizador">Temporizador</string>

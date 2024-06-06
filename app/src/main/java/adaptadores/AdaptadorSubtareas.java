@@ -61,7 +61,7 @@ public class AdaptadorSubtareas extends RecyclerView.Adapter<AdaptadorSubtareas.
         holder.checkRealizada.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                holder.isRealizado(isChecked, holder.textoTarea, subtarea.getId(), baseDeDatos);
+                holder.isRealizado(isChecked, holder.textoTarea, subtarea, baseDeDatos);
             }
         });
 
@@ -147,16 +147,18 @@ public class AdaptadorSubtareas extends RecyclerView.Adapter<AdaptadorSubtareas.
         public void representacionElementos(Subtarea subtarea, DatabaseReference baseDeDatos) {
             textoTarea.setText(subtarea.getNombre());
             checkRealizada.setChecked(subtarea.isRealizado());
-            isRealizado(subtarea.isRealizado(), textoTarea, subtarea.getId(), baseDeDatos);
+            isRealizado(subtarea.isRealizado(), textoTarea, subtarea, baseDeDatos);
         }
 
-        public void isRealizado(boolean isChecked, TextView textoTarea, String id, DatabaseReference baseDeDatos) {
+        public void isRealizado(boolean isChecked, TextView textoTarea, Subtarea subtarea, DatabaseReference baseDeDatos) {
             if (isChecked) {
                 textoTarea.setPaintFlags(textoTarea.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                baseDeDatos.child(id).child("realizado").setValue(true);
+                baseDeDatos.child(subtarea.getId()).child("realizado").setValue(true);
+                subtarea.setRealizado(true);
             } else {
                 textoTarea.setPaintFlags(textoTarea.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-                baseDeDatos.child(id).child("realizado").setValue(false);
+                baseDeDatos.child(subtarea.getId()).child("realizado").setValue(false);
+                subtarea.setRealizado(false);
             }
         }
     }

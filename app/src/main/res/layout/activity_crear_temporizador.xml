@@ -38,43 +38,147 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/botonSeleccionarTiempoTrabajo"
+    <TextView
+        android:id="@+id/textViewInsertarTiempoTrabajo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textInputInsertarTituloTemporizador"
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat_semibold"
-        android:text="@string/textoSeleccionaTiempoTrabajo" />
+        android:text="@string/textoInsertarTiempoTrabajo"
+        android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/textViewTiempoTrabajo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/botonSeleccionarTiempoTrabajo"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:visibility="gone"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/botonSeleccionarTiempoDescanso"
+    <LinearLayout
+        android:id="@+id/layoutTiempoTrabajo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textViewTiempoTrabajo"
+        android:layout_below="@id/textViewInsertarTiempoTrabajo"
         android:layout_centerInParent="true"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/montserrat_semibold"
-        android:text="@string/textoSeleccionaTiempoDescanso" />
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/editTextInsertarTiempoTrabajoHoras"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/scampi"
+            android:fontFamily="@font/montserrat_semibold"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewDosPuntosHoras"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:text="@string/textoDosPuntos"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editTextInsertarTiempoTrabajoMinutos"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/scampi"
+            android:fontFamily="@font/montserrat_semibold"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewDosPuntosMinutos"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:text="@string/textoDosPuntos"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editTextInsertarTiempoTrabajoSegundos"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/scampi"
+            android:fontFamily="@font/montserrat_semibold"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textSize="20sp" />
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/textViewTiempoDescanso"
-        android:layout_width="match_parent"
+        android:id="@+id/textViewInsertarTiempoDescanso"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/botonSeleccionarTiempoDescanso"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:visibility="gone"/>
+        android:layout_below="@id/layoutTiempoTrabajo"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/textoInsertarTiempoDescanso"
+        android:textSize="25sp" />
+
+    <LinearLayout
+        android:id="@+id/layoutTiempoDescanso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewInsertarTiempoDescanso"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/editTextInsertarTiempoDescansoHoras"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/scampi"
+            android:fontFamily="@font/montserrat_semibold"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewDosPuntosDescansoHoras"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:text="@string/textoDosPuntos"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editTextInsertarTiempoDescansoMinutos"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/scampi"
+            android:fontFamily="@font/montserrat_semibold"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewDosPuntosDescansoMinutos"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:text="@string/textoDosPuntos"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editTextInsertarTiempoDescansoSegundos"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/scampi"
+            android:fontFamily="@font/montserrat_semibold"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textSize="20sp" />
+
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/botonRealizarTemporizador"
