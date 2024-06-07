@@ -73,6 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             app:icon="@drawable/play_arrow"
+            app:iconTint="@color/gray_nurse"
             android:text="@string/textoIniciar"/>
 
         <com.google.android.material.button.MaterialButton

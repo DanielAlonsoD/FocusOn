@@ -77,6 +77,8 @@
 
     <!--Iniciar Temporizador-->
     <string name="textoTemporizador">Temporizador</string>
+    <string name="textoReiniciarTemporizador">Reiniciar Temporizador</string>
+    <string name="descripcionReiniciarTemporizador">¿Estás seguro de que quieres reiniciar el temporizador?</string>
 
     <!--Elemento Temporizador-->
     <string name="textoTrabajo">Trabajo</string>
