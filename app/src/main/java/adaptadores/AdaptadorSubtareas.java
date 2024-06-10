@@ -1,15 +1,11 @@
 package adaptadores;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
@@ -20,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.focuson.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -29,19 +24,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 import tablas.Subtarea;
-import tablas.Tarea;
 
 public class AdaptadorSubtareas extends RecyclerView.Adapter<AdaptadorSubtareas.ViewHolder> {
-    private ArrayList<Subtarea> subtareas;
-    private Context contexto;
-    private int layout;
-    private DatabaseReference baseDeDatos;
+    private final ArrayList<Subtarea> subtareas;
+    private final Context contexto;
+    private final int layout;
+    private final DatabaseReference baseDeDatos;
 
     public AdaptadorSubtareas(ArrayList<Subtarea> subtareas, Context contexto, String idTarea) {
         this.subtareas = subtareas;
         this.contexto = contexto;
         layout = R.layout.elemento_subtarea;
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+        assert usuario != null;
         baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Tareas").child(idTarea).child("Subtareas");
     }
 
@@ -58,21 +53,13 @@ public class AdaptadorSubtareas extends RecyclerView.Adapter<AdaptadorSubtareas.
         Subtarea subtarea = subtareas.get(position);
         holder.representacionElementos(subtarea, baseDeDatos);
 
-        holder.checkRealizada.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                holder.isRealizado(isChecked, holder.textoTarea, subtarea, baseDeDatos);
-            }
-        });
+        holder.checkRealizada.setOnCheckedChangeListener((buttonView, isChecked) -> holder.isRealizado(isChecked, holder.textoTarea, subtarea, baseDeDatos));
 
-        holder.botonMasOpciones.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupMenu menu = new PopupMenu(contexto, holder.botonMasOpciones);
-                menu.getMenuInflater().inflate(R.menu.opciones_subtarea, menu.getMenu());
-                menuDeOpciones(menu, v, subtarea);
-                menu.show();
-            }
+        holder.botonMasOpciones.setOnClickListener(v -> {
+            PopupMenu menu = new PopupMenu(contexto, holder.botonMasOpciones);
+            menu.getMenuInflater().inflate(R.menu.opciones_subtarea, menu.getMenu());
+            menuDeOpciones(menu, v, subtarea);
+            menu.show();
         });
     }
 
@@ -82,16 +69,13 @@ public class AdaptadorSubtareas extends RecyclerView.Adapter<AdaptadorSubtareas.
     }
 
     public void menuDeOpciones(PopupMenu menu, View v, Subtarea subtarea) {
-        menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.itemEditarSubtarea) {
-                    editarTarea(v, subtarea);
-                } else {
-                    borrarTarea(v, subtarea);
-                }
-                return true;
+        menu.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.itemEditarSubtarea) {
+                editarTarea(v, subtarea);
+            } else {
+                borrarTarea(v, subtarea);
             }
+            return true;
         });
     }
 
@@ -100,42 +84,32 @@ public class AdaptadorSubtareas extends RecyclerView.Adapter<AdaptadorSubtareas.
         EditText editTextTextoAlerta =  alertaInsertarTexto.findViewById(R.id.editTextTextoAlerta);
         editTextTextoAlerta.setText(subtarea.getNombre());
         MaterialAlertDialogBuilder alerta = new MaterialAlertDialogBuilder(v.getContext(), R.style.Alertas).setView(alertaInsertarTexto);
-        alerta.setTitle(R.string.textoEditarTarea).setPositiveButton(R.string.textoOk, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String textoAlerta = editTextTextoAlerta.getText().toString().trim();
-                if (!textoAlerta.isEmpty()) {
-                    baseDeDatos.child(subtarea.getId()).child("nombre").setValue(textoAlerta);
-                    subtarea.setNombre(textoAlerta);
-                    notifyDataSetChanged();
-                }
+        alerta.setTitle(R.string.textoEditarTarea).setPositiveButton(R.string.textoOk, (dialog, which) -> {
+            String textoAlerta = editTextTextoAlerta.getText().toString().trim();
+            if (!textoAlerta.isEmpty()) {
+                baseDeDatos.child(subtarea.getId()).child("nombre").setValue(textoAlerta);
+                subtarea.setNombre(textoAlerta);
+                notifyDataSetChanged();
             }
-        }).setNeutralButton(R.string.textoCancelar, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {}});
+        }).setNeutralButton(R.string.textoCancelar, (dialog, which) -> {});
         alerta.show();
     }
 
     public void borrarTarea(View v, Subtarea subtarea) {
         MaterialAlertDialogBuilder alerta = new MaterialAlertDialogBuilder(v.getContext(), R.style.Alertas);
         alerta.setTitle(R.string.textoBorrarSubtarea).setMessage(R.string.descripcionBorrarSubtarea)
-                .setPositiveButton(R.string.textoSi, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        baseDeDatos.child(subtarea.getId()).removeValue();
-                        subtareas.remove(subtarea);
-                        notifyDataSetChanged();
-                    }
-                }).setNeutralButton(R.string.textoCancelar, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {}});
+                .setPositiveButton(R.string.textoSi, (dialog, which) -> {
+                    baseDeDatos.child(subtarea.getId()).removeValue();
+                    subtareas.remove(subtarea);
+                    notifyDataSetChanged();
+                }).setNeutralButton(R.string.textoCancelar, (dialog, which) -> {});
         alerta.show();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textoTarea;
-        public CheckBox checkRealizada;
-        public ImageButton botonMasOpciones;
+        public final TextView textoTarea;
+        public final CheckBox checkRealizada;
+        public final ImageButton botonMasOpciones;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

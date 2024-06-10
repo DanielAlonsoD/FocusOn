@@ -1,12 +1,9 @@
 package com.example.focuson;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
-import android.content.res.ColorStateList;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -73,25 +70,20 @@ public class IniciarTemporizadorActivity extends AppCompatActivity implements Vi
         } else if (v.getId() == R.id.botonReiniciar) {
             MaterialAlertDialogBuilder alerta = new MaterialAlertDialogBuilder(v.getContext(), R.style.Alertas);
             alerta.setTitle(R.string.textoReiniciarTemporizador).setMessage(R.string.descripcionReiniciarTemporizador)
-                    .setPositiveButton(R.string.textoSi, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            textoTipoTiempo.setText(R.string.textoTrabajo);
-                            textoTiempo.setText(temporizador.getTrabajo());
-                            cambioEstiloBoton(botonIniciar, true);
-                            try {
-                                timerTask.cancel();
-                            } catch (NullPointerException ex) {}
-                            tiempo = getTiempo(temporizador.getTrabajo());
-                        }
-                    }).setNeutralButton(R.string.textoCancelar, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {}});
+                    .setPositiveButton(R.string.textoSi, (dialog, which) -> {
+                        textoTipoTiempo.setText(R.string.textoTrabajo);
+                        textoTiempo.setText(temporizador.getTrabajo());
+                        cambioEstiloBoton(botonIniciar, true);
+                        try {
+                            timerTask.cancel();
+                        } catch (NullPointerException ignored) {}
+                        tiempo = getTiempo(temporizador.getTrabajo());
+                    }).setNeutralButton(R.string.textoCancelar, (dialog, which) -> {});
             alerta.show();
         } else {
             try {
                 timerTask.cancel();
-            } catch (NullPointerException ex) {}
+            } catch (NullPointerException ignored) {}
             getOnBackPressedDispatcher().onBackPressed();
         }
     }
@@ -102,7 +94,7 @@ public class IniciarTemporizadorActivity extends AppCompatActivity implements Vi
             boton.setEnabled(true);
             try {
                 timerTask.cancel();
-            } catch (NullPointerException ex) {}
+            } catch (NullPointerException ignored) {}
         } else {
             boton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.blue_bell));
             boton.setEnabled(false);
@@ -117,25 +109,20 @@ public class IniciarTemporizadorActivity extends AppCompatActivity implements Vi
             @Override
             public void run()
             {
-                runOnUiThread(new Runnable()
-                {
-                    @Override
-                    public void run()
-                    {
-                        if (tiempo!=0) {
-                            tiempo--;
-                            textoTiempo.setText(getTiempoRestante());
-                        } else if (textoTipoTiempo.getText().equals("Trabajo")) {
-                            tiempo = getTiempo(temporizador.getDescanso());
-                            textoTipoTiempo.setText(R.string.textoDescanso);
-                            textoTiempo.setText(temporizador.getDescanso());
-                            MediaPlayer.create(IniciarTemporizadorActivity.this, R.raw.start_sound_beep).start();
-                        } else {
-                            tiempo = getTiempo(temporizador.getTrabajo());
-                            textoTipoTiempo.setText(R.string.textoTrabajo);
-                            textoTiempo.setText(temporizador.getTrabajo());
-                            MediaPlayer.create(IniciarTemporizadorActivity.this, R.raw.start_sound_beep).start();
-                        }
+                runOnUiThread(() -> {
+                    if (tiempo!=0) {
+                        tiempo--;
+                        textoTiempo.setText(getTiempoRestante());
+                    } else if (textoTipoTiempo.getText().equals("Trabajo")) {
+                        tiempo = getTiempo(temporizador.getDescanso());
+                        textoTipoTiempo.setText(R.string.textoDescanso);
+                        textoTiempo.setText(temporizador.getDescanso());
+                        MediaPlayer.create(IniciarTemporizadorActivity.this, R.raw.start_sound_beep).start();
+                    } else {
+                        tiempo = getTiempo(temporizador.getTrabajo());
+                        textoTipoTiempo.setText(R.string.textoTrabajo);
+                        textoTiempo.setText(temporizador.getTrabajo());
+                        MediaPlayer.create(IniciarTemporizadorActivity.this, R.raw.start_sound_beep).start();
                     }
                 });
             }
@@ -145,6 +132,7 @@ public class IniciarTemporizadorActivity extends AppCompatActivity implements Vi
     }
 
 
+    @SuppressLint("DefaultLocale")
     private String getTiempoRestante()
     {
         int redondear = (int) Math.round(tiempo);

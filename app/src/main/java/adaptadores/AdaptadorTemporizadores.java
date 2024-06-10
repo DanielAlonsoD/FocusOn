@@ -1,11 +1,7 @@
 package adaptadores;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.focuson.IniciarTemporizadorActivity;
 import com.example.focuson.R;
-import com.example.focuson.RegistroActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,20 +21,18 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-import tablas.Rutina;
 import tablas.Temporizador;
 
 public class AdaptadorTemporizadores extends RecyclerView.Adapter<AdaptadorTemporizadores.ViewHolder> {
-    private ArrayList<Temporizador> temporizadores;
-    private Context contexto;
-    private int layout;
-    private DatabaseReference baseDeDatos;
+    private final ArrayList<Temporizador> temporizadores;
+    private final int layout;
+    private final DatabaseReference baseDeDatos;
 
-    public AdaptadorTemporizadores(ArrayList<Temporizador> temporizadores, Context contexto) {
+    public AdaptadorTemporizadores(ArrayList<Temporizador> temporizadores) {
         this.temporizadores = temporizadores;
-        this.contexto = contexto;
         layout = R.layout.elemento_temporizador;
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+        assert usuario != null;
         baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Temporizadores");
     }
 
@@ -56,32 +49,21 @@ public class AdaptadorTemporizadores extends RecyclerView.Adapter<AdaptadorTempo
         Temporizador temporizador = temporizadores.get(position);
         holder.representacionElementos(temporizador);
 
-        holder.botonIniciarTemporizador.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent actividadIniciarTemporizador = new Intent(v.getContext(), IniciarTemporizadorActivity.class);
-                actividadIniciarTemporizador.putExtra("Temporizador", temporizador);
-                v.getContext().startActivity(actividadIniciarTemporizador);
-            }
+        holder.botonIniciarTemporizador.setOnClickListener(v -> {
+            Intent actividadIniciarTemporizador = new Intent(v.getContext(), IniciarTemporizadorActivity.class);
+            actividadIniciarTemporizador.putExtra("Temporizador", temporizador);
+            v.getContext().startActivity(actividadIniciarTemporizador);
         });
 
-        holder.botonEliminarTemporizador.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MaterialAlertDialogBuilder alerta = new MaterialAlertDialogBuilder(v.getContext(), R.style.Alertas);
-                alerta.setTitle(R.string.textoBorrarTemporizador).setMessage(R.string.descripcionBorrarTemporizador)
-                        .setPositiveButton(R.string.textoSi, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                baseDeDatos.child(temporizador.getId()).removeValue();
-                                temporizadores.remove(temporizador);
-                                notifyDataSetChanged();
-                            }
-                        }).setNeutralButton(R.string.textoCancelar, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {}});
-                alerta.show();
-            }
+        holder.botonEliminarTemporizador.setOnClickListener(v -> {
+            MaterialAlertDialogBuilder alerta = new MaterialAlertDialogBuilder(v.getContext(), R.style.Alertas);
+            alerta.setTitle(R.string.textoBorrarTemporizador).setMessage(R.string.descripcionBorrarTemporizador)
+                    .setPositiveButton(R.string.textoSi, (dialog, which) -> {
+                        baseDeDatos.child(temporizador.getId()).removeValue();
+                        temporizadores.remove(temporizador);
+                        notifyDataSetChanged();
+                    }).setNeutralButton(R.string.textoCancelar, (dialog, which) -> {});
+            alerta.show();
         });
     }
 
@@ -91,8 +73,8 @@ public class AdaptadorTemporizadores extends RecyclerView.Adapter<AdaptadorTempo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView  textViewTituloRutina,textViewMinutosSegundosTrabajo, textViewMinutosSegundosDescanso;
-        public MaterialButton botonIniciarTemporizador, botonEliminarTemporizador;
+        public final TextView  textViewTituloRutina,textViewMinutosSegundosTrabajo, textViewMinutosSegundosDescanso;
+        public final MaterialButton botonIniciarTemporizador, botonEliminarTemporizador;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

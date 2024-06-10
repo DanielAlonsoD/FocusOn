@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/layoutElementoTarea"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -13,7 +11,8 @@
         android:layout_alignParentTop="true"
         android:layout_above="@id/divisorTareaSubtarea"
         android:src="@drawable/fiber_manual_record"
-        app:tint="@color/scampi"/>
+        app:tint="@color/scampi"
+        android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/textoTarea"
@@ -39,7 +38,8 @@
         android:background="@color/gray_nurse"
         android:src="@drawable/more_vert"
         android:scaleX="2"
-        android:scaleY="2"/>
+        android:scaleY="2"
+        android:contentDescription="@string/todo" />
 
     <ImageButton
         android:id="@+id/imagenSubtareasVisibles"
@@ -51,7 +51,8 @@
         android:layout_marginEnd="35dp"
         android:src="@drawable/arrow_drop_up"
         android:backgroundTint="@color/gray_nurse"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:contentDescription="@string/todo" />
 
     <ImageButton
         android:id="@+id/imagenSubtareasNoVisibles"
@@ -62,7 +63,8 @@
         android:layout_above="@id/divisorTareaSubtarea"
         android:layout_marginEnd="35dp"
         android:src="@drawable/arrow_drop_down"
-        android:backgroundTint="@color/gray_nurse"/>
+        android:backgroundTint="@color/gray_nurse"
+        android:contentDescription="@string/todo" />
 
     <CheckBox
         android:id="@+id/checkRealizado"
@@ -88,7 +90,6 @@
         android:layout_marginStart="20dp"/>
 
     <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/divisorDeTareas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/listaSubtareas"

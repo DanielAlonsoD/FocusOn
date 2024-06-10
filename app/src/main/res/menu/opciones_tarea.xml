@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/itemCrearSubtarea"
@@ -10,8 +9,6 @@
         android:id="@+id/itemEditarTarea"
         android:title="@string/textoEditar"/>
 
-    <item
-        android:id="@+id/itemEliminarTarea"
-        android:title="@string/textoEliminar"/>
+    <item android:title="@string/textoEliminar"/>
 
 </menu>

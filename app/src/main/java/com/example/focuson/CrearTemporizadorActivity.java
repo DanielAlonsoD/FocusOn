@@ -2,20 +2,14 @@ package com.example.focuson;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.TimePicker;
 
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,11 +17,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.lang.reflect.Array;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
-import tablas.Rutina;
 import tablas.Temporizador;
 
 public class CrearTemporizadorActivity extends AppCompatActivity implements View.OnClickListener {
@@ -40,6 +29,7 @@ public class CrearTemporizadorActivity extends AppCompatActivity implements View
         setContentView(R.layout.activity_crear_temporizador);
 
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+        assert usuario != null;
         baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Temporizadores");
 
         MaterialToolbar encabezado = findViewById(R.id.encabezadoCrearTemporizador);
@@ -115,16 +105,16 @@ public class CrearTemporizadorActivity extends AppCompatActivity implements View
     }
 
     public String creacionTiempo(String[] tiempo) {
-        String resultado = "";
+        StringBuilder resultado = new StringBuilder();
         for(int i=0;i<tiempo.length; i++){
             if (tiempo[i].length()==1){
                 tiempo[i]="0"+tiempo[i];
             }
-            resultado+=tiempo[i];
+            resultado.append(tiempo[i]);
             if (i<tiempo.length-1){
-                resultado+=":";
+                resultado.append(":");
             }
         }
-        return resultado;
+        return resultado.toString();
     }
 }

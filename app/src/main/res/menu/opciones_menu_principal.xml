@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/itemCerrarSesion"
         android:title=""
         android:icon="@drawable/logout"
         android:iconTint="@color/gray_nurse"

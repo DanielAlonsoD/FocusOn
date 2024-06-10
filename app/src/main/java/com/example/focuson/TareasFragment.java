@@ -1,6 +1,5 @@
 package com.example.focuson;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import adaptadores.AdaptadorTareas;
 import tablas.Subtarea;
@@ -33,7 +33,7 @@ import tablas.Tarea;
 
 public class TareasFragment extends Fragment implements View.OnClickListener {
     private AdaptadorTareas adaptador;
-    private ArrayList<Tarea> tareas = new ArrayList<>();
+    private final ArrayList<Tarea> tareas = new ArrayList<>();
     private DatabaseReference baseDeDatos;
     private boolean leido;
 
@@ -52,6 +52,7 @@ public class TareasFragment extends Fragment implements View.OnClickListener {
         View elemento = inflater.inflate(R.layout.fragment_tareas, container, false);
 
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+        assert usuario != null;
         baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Tareas");
 
         FloatingActionButton botonCrear = elemento.findViewById(R.id.botonCrearTarea);
@@ -63,10 +64,11 @@ public class TareasFragment extends Fragment implements View.OnClickListener {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     String tareaId = ds.getKey();
                     String nombre = ds.child("nombre").getValue(String.class);
-                    boolean realizado = ds.child("realizado").getValue(Boolean.class);
+                    boolean realizado = Boolean.TRUE.equals(ds.child("realizado").getValue(Boolean.class));
                     Tarea tarea = new Tarea(tareaId, nombre, realizado, new ArrayList<>());
                     if (ds.hasChild("Subtareas")) {
                         leido = false;
+                        assert tareaId != null;
                         DatabaseReference baseSubtareas = baseDeDatos.child(tareaId).child("Subtareas");
 
                         while (!leido) {
@@ -75,7 +77,7 @@ public class TareasFragment extends Fragment implements View.OnClickListener {
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                                     ArrayList<Subtarea> subtareas = new ArrayList<>();
                                     for (DataSnapshot ds2 : snapshot.getChildren()) {
-                                        subtareas.add(new Subtarea(ds2.getKey(), ds2.child("nombre").getValue(String.class), ds2.child("realizado").getValue(Boolean.class)));
+                                        subtareas.add(new Subtarea(ds2.getKey(), ds2.child("nombre").getValue(String.class), Boolean.TRUE.equals(ds2.child("realizado").getValue(Boolean.class))));
                                     }
                                     tarea.setSubtareas(subtareas);
                                 }
@@ -111,21 +113,15 @@ public class TareasFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         View alertaCrearTarea = LayoutInflater.from(this.getContext()).inflate(R.layout.alerta_crear_editar_tarea_subtarea, null);
         EditText editTextTextoAlerta =  alertaCrearTarea.findViewById(R.id.editTextTextoAlerta);
-        new MaterialAlertDialogBuilder(this.getContext(), R.style.Alertas).setTitle(R.string.textoCreaUnaTarea).setView(alertaCrearTarea)
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String textoAlerta = editTextTextoAlerta.getText().toString().trim();
-                        if (!textoAlerta.isEmpty()) {
-                            Tarea tarea = new Tarea(editTextTextoAlerta.getText().toString(), false, new ArrayList<Subtarea>(){});
-                            baseDeDatos.push().setValue(tarea);
-                            getParentFragmentManager().beginTransaction().detach(TareasFragment.this).attach(TareasFragment.this).commit();
-                        }
+        new MaterialAlertDialogBuilder(Objects.requireNonNull(this.getContext()), R.style.Alertas).setTitle(R.string.textoCreaUnaTarea).setView(alertaCrearTarea)
+                .setPositiveButton("Ok", (dialog, which) -> {
+                    String textoAlerta = editTextTextoAlerta.getText().toString().trim();
+                    if (!textoAlerta.isEmpty()) {
+                        Tarea tarea = new Tarea(editTextTextoAlerta.getText().toString(), false, new ArrayList<Subtarea>(){});
+                        baseDeDatos.push().setValue(tarea);
+                        getParentFragmentManager().beginTransaction().detach(TareasFragment.this).attach(TareasFragment.this).commit();
                     }
                 })
-                .setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {}
-                }).show();
+                .setNeutralButton("Cancelar", (dialog, which) -> {}).show();
     }
 }

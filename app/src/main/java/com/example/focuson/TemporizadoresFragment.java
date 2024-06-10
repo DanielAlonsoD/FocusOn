@@ -1,5 +1,6 @@
 package com.example.focuson;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -23,20 +24,19 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import adaptadores.AdaptadorRutinas;
 import adaptadores.AdaptadorTemporizadores;
 import tablas.Temporizador;
 
 public class TemporizadoresFragment extends Fragment implements View.OnClickListener {
 
     private AdaptadorTemporizadores adaptador;
-    private ArrayList<Temporizador> temporizadores = new ArrayList<>();
-    private DatabaseReference baseDeDatos;
+    private final ArrayList<Temporizador> temporizadores = new ArrayList<>();
 
     public TemporizadoresFragment() {
         // Required empty public constructor
     }
 
+    @SuppressLint("DetachAndAttachSameFragment")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getParentFragmentManager().beginTransaction().detach(TemporizadoresFragment.this).attach(TemporizadoresFragment.this).commit();
@@ -44,7 +44,8 @@ public class TemporizadoresFragment extends Fragment implements View.OnClickList
         View elemento = inflater.inflate(R.layout.fragment_temporizadores, container, false);
 
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
-        baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Temporizadores");
+        assert usuario != null;
+        DatabaseReference baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Temporizadores");
 
         RecyclerView listaTemporizadores = elemento.findViewById(R.id.listaTemporizadores);
         FloatingActionButton botonCrear = elemento.findViewById(R.id.botonCrearTemporizador);
@@ -60,7 +61,7 @@ public class TemporizadoresFragment extends Fragment implements View.OnClickList
                     temporizadores.add(new Temporizador(id, titulo, trabajo, descanso));
                 }
 
-                adaptador = new AdaptadorTemporizadores(temporizadores, getActivity().getBaseContext());
+                adaptador = new AdaptadorTemporizadores(temporizadores);
                 RecyclerView.LayoutManager layoutManager = new GridLayoutManager(TemporizadoresFragment.this.getContext(), 1);
                 listaTemporizadores.setAdapter(adaptador);
                 listaTemporizadores.setLayoutManager(layoutManager);

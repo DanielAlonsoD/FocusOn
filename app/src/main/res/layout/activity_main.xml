@@ -10,11 +10,11 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imagenLogoInicio"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:src="@drawable/focus_on"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:contentDescription="@string/todo" />
 
     <Space
         android:layout_width="match_parent"
@@ -35,7 +35,10 @@
         <EditText
             android:id="@+id/textoInsertarCorreo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            tools:ignore="LabelFor"
+            android:autofillHints="" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -54,7 +57,9 @@
             android:id="@+id/textoInsertarContrasena"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            tools:ignore="LabelFor"
+            android:autofillHints="" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

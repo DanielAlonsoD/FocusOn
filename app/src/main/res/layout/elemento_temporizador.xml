@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/layoutElementoTemporizador"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -22,7 +21,6 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/layoutTiemposTemporizador"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -49,13 +47,11 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layoutTrabajoDescansoTexto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp">
 
             <TextView
-                android:id="@+id/textViewTrabajo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -65,7 +61,6 @@
                 android:textSize="20sp"/>
 
             <TextView
-                android:id="@+id/textViewDescanso"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -112,7 +107,6 @@
     </LinearLayout>
 
     <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/divisorDeRutinas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

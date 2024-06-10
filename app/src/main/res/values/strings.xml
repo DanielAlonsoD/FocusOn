@@ -30,15 +30,14 @@
     <string name="textoEditar">Editar</string>
 
     <!--Alert Dialog-->
-    <string name="textoOk">Ok</string>
-    <string name="textoSi">Sí</string>
+    <string name="textoOk">OK</string>
+    <string name="textoSi">SÍ</string>
     <string name="textoCancelar">Cancelar</string>
 
     <!--Alerta Crear Editar Tarea Subtarea-->
     <string name="textoCreaUnaTarea">Crea una Tarea</string>
     <string name="textoCreaUnaSubtarea">Crea una Subtarea</string>
     <string name="textoEditarTarea">Editar Tarea</string>
-    <string name="textoEditarSubtarea">Editar Subtarea</string>
     <string name="textoBorrarTarea">Borrar Tarea</string>
     <string name="textoBorrarSubtarea">Borrar Subtarea</string>
     <string name="textoInsertarTituloTarea">Inserta el título de la Tarea</string>
@@ -64,7 +63,6 @@
     <string name="textoVi">Vi</string>
     <string name="textoSa">Sá</string>
     <string name="textoDo">Do</string>
-    <string name="textoRepetirCadaSemana">Repetir cada semana</string>
     <string name="textoSeleccionaHoraInicial">Selecciona la Hora Inicial</string>
     <string name="textoSeleccionaHoraFinal">Selecciona la Hora Final</string>
 
@@ -92,7 +90,7 @@
     <string name="textoErrorConfirmarContrasenaErronea">La contraseña y su confirmación son diferentes.</string>
 
     <!--Error textInputs-->
-    <string name="textoDatoVacío">Rellena el dato</string>
+    <string name="textoDatoVacio">Rellena el dato</string>
     <string name="textoDatoIncorrecto">Dato incorrecto</string>
     <string name="textoDatoDiferente">No son iguales</string>
 
@@ -103,4 +101,5 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="todo">TODO</string>
 </resources>

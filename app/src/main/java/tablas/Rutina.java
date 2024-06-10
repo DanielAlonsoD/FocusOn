@@ -2,10 +2,10 @@ package tablas;
 
 public class Rutina {
     private String id;
-    private String titulo;
-    private String diasSemana;
-    private String horaInicio;
-    private String horaFinal;
+    private final String titulo;
+    private final String diasSemana;
+    private final String horaInicio;
+    private final String horaFinal;
 
     public Rutina(String titulo, String diasSemana, String horaInicio, String horaFinal) {
         this.titulo = titulo;
@@ -26,39 +26,19 @@ public class Rutina {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getTitulo() {
         return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
     }
 
     public String getDiasSemana() {
         return diasSemana;
     }
 
-    public void setDiasSemana(String diasSemana) {
-        this.diasSemana = diasSemana;
-    }
-
     public String getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(String horaInicio) {
-        this.horaInicio = horaInicio;
-    }
-
     public String getHoraFinal() {
         return horaFinal;
-    }
-
-    public void setHoraFinal(String horaFinal) {
-        this.horaFinal = horaFinal;
     }
 }

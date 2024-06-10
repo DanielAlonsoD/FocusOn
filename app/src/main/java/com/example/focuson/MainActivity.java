@@ -1,6 +1,5 @@
 package com.example.focuson;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,18 +8,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth autenticacion;
-    private MetodosEntreClases metodosEntreClases = new MetodosEntreClases();
+    private final MetodosEntreClases metodosEntreClases = new MetodosEntreClases();
     private TextInputLayout textInputCorreo, textInputContrasena;
     private EditText textoCorreo, textoContrasena;
 
@@ -55,19 +51,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if (correo.isEmpty() || contrasena.isEmpty()) {
                 Snackbar.make(layoutMainActivity, R.string.textoErrorDatosVacios, Snackbar.LENGTH_SHORT).show();
-                cambiarColorTextInputVacios(correo, contrasena, R.string.textoDatoVacío);
+                cambiarColorTextInputVacios(correo, contrasena, R.string.textoDatoVacio);
             } else {
                 autenticacion.signInWithEmailAndPassword(correo, contrasena)
-                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Intent actividadMenu = new Intent(MainActivity.this, MenuActivity.class);
-                                    startActivity(actividadMenu);
-                                } else {
-                                    Snackbar.make(layoutMainActivity, R.string.textoErrorCorreoContrasenaIncorrectos, Snackbar.LENGTH_SHORT).show();
-                                    cambiarColorTextInputVacios("", "", R.string.textoDatoIncorrecto);
-                                }
+                        .addOnCompleteListener(this, task -> {
+                            if (task.isSuccessful()) {
+                                Intent actividadMenu = new Intent(MainActivity.this, MenuActivity.class);
+                                startActivity(actividadMenu);
+                            } else {
+                                Snackbar.make(layoutMainActivity, R.string.textoErrorCorreoContrasenaIncorrectos, Snackbar.LENGTH_SHORT).show();
+                                cambiarColorTextInputVacios("", "", R.string.textoDatoIncorrecto);
                             }
                         });
             }

@@ -1,7 +1,6 @@
 package tablas;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Tarea {
     private String id;
@@ -22,17 +21,8 @@ public class Tarea {
         this.subtareas = subtareas;
     }
 
-    public Tarea(String nombre, boolean realizado) {
-        this.nombre = nombre;
-        this.realizado = realizado;
-    }
-
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getNombre() {

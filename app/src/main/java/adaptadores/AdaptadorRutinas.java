@@ -1,8 +1,6 @@
 package adaptadores;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,16 +22,15 @@ import java.util.ArrayList;
 import tablas.Rutina;
 
 public class AdaptadorRutinas extends RecyclerView.Adapter<AdaptadorRutinas.ViewHolder> {
-    private ArrayList<Rutina> rutinas;
-    private Context contexto;
-    private int layout;
-    private DatabaseReference baseDeDatos;
+    private final ArrayList<Rutina> rutinas;
+    private final int layout;
+    private final DatabaseReference baseDeDatos;
 
-    public AdaptadorRutinas(ArrayList<Rutina> rutinas, Context contexto) {
+    public AdaptadorRutinas(ArrayList<Rutina> rutinas) {
         this.rutinas = rutinas;
-        this.contexto = contexto;
         layout = R.layout.elemento_rutina;
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+        assert usuario != null;
         baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Rutinas");
     }
 
@@ -50,23 +47,15 @@ public class AdaptadorRutinas extends RecyclerView.Adapter<AdaptadorRutinas.View
         Rutina rutina = rutinas.get(position);
         holder.representacionElementos(rutina);
 
-        holder.botonEliminarHorario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MaterialAlertDialogBuilder alerta = new MaterialAlertDialogBuilder(v.getContext(), R.style.Alertas);
-                alerta.setTitle(R.string.textoBorrarRutina).setMessage(R.string.descripcionBorrarRutina)
-                        .setPositiveButton(R.string.textoSi, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                baseDeDatos.child(rutina.getId()).removeValue();
-                                rutinas.remove(rutina);
-                                notifyDataSetChanged();
-                            }
-                        }).setNeutralButton(R.string.textoCancelar, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {}});
-                alerta.show();
-            }
+        holder.botonEliminarHorario.setOnClickListener(v -> {
+            MaterialAlertDialogBuilder alerta = new MaterialAlertDialogBuilder(v.getContext(), R.style.Alertas);
+            alerta.setTitle(R.string.textoBorrarRutina).setMessage(R.string.descripcionBorrarRutina)
+                    .setPositiveButton(R.string.textoSi, (dialog, which) -> {
+                        baseDeDatos.child(rutina.getId()).removeValue();
+                        rutinas.remove(rutina);
+                        notifyDataSetChanged();
+                    }).setNeutralButton(R.string.textoCancelar, (dialog, which) -> {});
+            alerta.show();
         });
     }
 
@@ -76,8 +65,8 @@ public class AdaptadorRutinas extends RecyclerView.Adapter<AdaptadorRutinas.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textViewTituloHorario, textViewDiasSemana, textViewHoras;
-        public MaterialButton botonEliminarHorario;
+        public final TextView textViewTituloHorario, textViewDiasSemana, textViewHoras;
+        public final MaterialButton botonEliminarHorario;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

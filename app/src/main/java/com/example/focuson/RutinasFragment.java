@@ -1,5 +1,6 @@
 package com.example.focuson;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -28,13 +29,13 @@ import tablas.Rutina;
 
 public class RutinasFragment extends Fragment implements View.OnClickListener {
     private AdaptadorRutinas adaptador;
-    private ArrayList<Rutina> rutinas = new ArrayList<>();
-    private DatabaseReference baseDeDatos;
+    private final ArrayList<Rutina> rutinas = new ArrayList<>();
 
     public RutinasFragment() {
         // Required empty public constructor
     }
 
+    @SuppressLint("DetachAndAttachSameFragment")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getParentFragmentManager().beginTransaction().detach(RutinasFragment.this).attach(RutinasFragment.this).commit();
@@ -42,7 +43,8 @@ public class RutinasFragment extends Fragment implements View.OnClickListener {
         View elemento = inflater.inflate(R.layout.fragment_rutinas, container, false);
 
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
-        baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Rutinas");
+        assert usuario != null;
+        DatabaseReference baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Rutinas");
 
         RecyclerView listaRutinas = elemento.findViewById(R.id.listaRutinas);
         FloatingActionButton botonCrear = elemento.findViewById(R.id.botonCrearRutina);
@@ -59,7 +61,7 @@ public class RutinasFragment extends Fragment implements View.OnClickListener {
                     rutinas.add(new Rutina(id, titulo, diasSemana, horaInicio, horaFinal));
                 }
 
-                adaptador = new AdaptadorRutinas(rutinas, getActivity().getBaseContext());
+                adaptador = new AdaptadorRutinas(rutinas);
                 RecyclerView.LayoutManager layoutManager = new GridLayoutManager(RutinasFragment.this.getContext(), 1);
                 listaRutinas.setAdapter(adaptador);
                 listaRutinas.setLayoutManager(layoutManager);

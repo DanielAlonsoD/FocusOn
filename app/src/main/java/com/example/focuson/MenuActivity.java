@@ -30,7 +30,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationBarView
 
         encabezado = findViewById(R.id.encabezadoMenu);
         BottomNavigationView barraInferior = findViewById(R.id.barraInferiorOpciones);
-        barraInferior.setOnItemSelectedListener(this::onNavigationItemSelected);
+        barraInferior.setOnItemSelectedListener(this);
 
         navController = Navigation.findNavController(this, R.id.contenedorFragmentos);
     }

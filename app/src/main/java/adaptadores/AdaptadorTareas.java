@@ -1,18 +1,13 @@
 package adaptadores;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Paint;
-import android.text.Layout;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
@@ -21,9 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.focuson.R;
-import com.example.focuson.TareasFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,16 +29,17 @@ import tablas.Subtarea;
 import tablas.Tarea;
 
 public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHolder> {
-    private ArrayList<Tarea> tareas;
-    private Context contexto;
-    private int layout;
-    private DatabaseReference baseDeDatos;
+    private final ArrayList<Tarea> tareas;
+    private final Context contexto;
+    private final int layout;
+    private final DatabaseReference baseDeDatos;
 
     public AdaptadorTareas (ArrayList<Tarea> tareas, Context contexto) {
         this.tareas = tareas;
         this.contexto = contexto;
         layout = R.layout.elemento_tarea;
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+        assert usuario != null;
         baseDeDatos = FirebaseDatabase.getInstance().getReference(usuario.getUid()).child("Tareas");
     }
 
@@ -62,38 +56,26 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
         Tarea tarea = tareas.get(position);
         holder.representacionElementos(tarea, contexto, baseDeDatos);
 
-        holder.imagenSubtareasVisibles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.mostrarSubtareas();
-                notifyDataSetChanged();
-            }
+        holder.imagenSubtareasVisibles.setOnClickListener(v -> {
+            holder.mostrarSubtareas();
+            notifyDataSetChanged();
         });
 
-        holder.imagenSubtareasNoVisibles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.mostrarSubtareas();
-                notifyDataSetChanged();
-            }
+        holder.imagenSubtareasNoVisibles.setOnClickListener(v -> {
+            holder.mostrarSubtareas();
+            notifyDataSetChanged();
         });
 
-        holder.checkRealizada.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                holder.isRealizado(isChecked, holder.textoTarea, tarea, baseDeDatos);
-                notifyDataSetChanged();
-            }
+        holder.checkRealizada.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            holder.isRealizado(isChecked, holder.textoTarea, tarea, baseDeDatos);
+            notifyDataSetChanged();
         });
 
-        holder.botonMasOpciones.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupMenu menu = new PopupMenu(contexto, holder.botonMasOpciones);
-                menu.getMenuInflater().inflate(R.menu.opciones_tarea, menu.getMenu());
-                menuDeOpciones(menu, v, tarea, holder);
-                menu.show();
-            }
+        holder.botonMasOpciones.setOnClickListener(v -> {
+            PopupMenu menu = new PopupMenu(contexto, holder.botonMasOpciones);
+            menu.getMenuInflater().inflate(R.menu.opciones_tarea, menu.getMenu());
+            menuDeOpciones(menu, v, tarea, holder);
+            menu.show();
         });
     }
 
@@ -103,18 +85,15 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
     }
 
     public void menuDeOpciones(PopupMenu menu, View v, Tarea tarea, AdaptadorTareas.ViewHolder holder) {
-        menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.itemCrearSubtarea) {
-                    crearSubtarea(v, tarea, holder);
-                } else if (item.getItemId() == R.id.itemEditarTarea) {
-                    editarTarea(v, tarea);
-                } else {
-                    borrarTarea(v, tarea);
-                }
-                return true;
+        menu.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.itemCrearSubtarea) {
+                crearSubtarea(v, tarea, holder);
+            } else if (item.getItemId() == R.id.itemEditarTarea) {
+                editarTarea(v, tarea);
+            } else {
+                borrarTarea(v, tarea);
             }
+            return true;
         });
     }
 
@@ -124,30 +103,26 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
         textInputTextoAlerta.setHint(R.string.textoInsertarTituloSubtarea);
         EditText editTextTextoAlerta =  alertaInsertarTexto.findViewById(R.id.editTextTextoAlerta);
         MaterialAlertDialogBuilder alerta = new MaterialAlertDialogBuilder(v.getContext(), R.style.Alertas).setView(alertaInsertarTexto);
-        alerta.setTitle(R.string.textoCreaUnaSubtarea).setPositiveButton(R.string.textoOk, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String textoAlerta = editTextTextoAlerta.getText().toString().trim();
-                if (!textoAlerta.isEmpty()) {
-                    Subtarea subtarea = new Subtarea(editTextTextoAlerta.getText().toString(), false);
-                    String subtareaId = baseDeDatos.push().getKey();
-                    baseDeDatos.child(tarea.getId()).child("Subtareas").child(subtareaId).setValue(subtarea);
-                    subtarea.setId(subtareaId);
-                    ArrayList<Subtarea> subtareas = new ArrayList<>();
-                    if (tarea.getSubtareas() != null) {
-                        subtareas = tarea.getSubtareas();
-                    }
-                    subtareas.add(subtarea);
-                    tarea.setSubtareas(subtareas);
-                    if (holder.imagenSubtareasNoVisibles.getVisibility() == View.VISIBLE) {
-                        holder.mostrarSubtareas();
-                    }
-                    notifyDataSetChanged();
+        alerta.setTitle(R.string.textoCreaUnaSubtarea).setPositiveButton(R.string.textoOk, (dialog, which) -> {
+            String textoAlerta = editTextTextoAlerta.getText().toString().trim();
+            if (!textoAlerta.isEmpty()) {
+                Subtarea subtarea = new Subtarea(editTextTextoAlerta.getText().toString(), false);
+                String subtareaId = baseDeDatos.push().getKey();
+                assert subtareaId != null;
+                baseDeDatos.child(tarea.getId()).child("Subtareas").child(subtareaId).setValue(subtarea);
+                subtarea.setId(subtareaId);
+                ArrayList<Subtarea> subtareas = new ArrayList<>();
+                if (tarea.getSubtareas() != null) {
+                    subtareas = tarea.getSubtareas();
                 }
+                subtareas.add(subtarea);
+                tarea.setSubtareas(subtareas);
+                if (holder.imagenSubtareasNoVisibles.getVisibility() == View.VISIBLE) {
+                    holder.mostrarSubtareas();
+                }
+                notifyDataSetChanged();
             }
-        }).setNeutralButton(R.string.textoCancelar, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {}});
+        }).setNeutralButton(R.string.textoCancelar, (dialog, which) -> {});
         alerta.show();
     }
 
@@ -156,44 +131,34 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHo
         EditText editTextTextoAlerta =  alertaInsertarTexto.findViewById(R.id.editTextTextoAlerta);
         editTextTextoAlerta.setText(tarea.getNombre());
         MaterialAlertDialogBuilder alerta = new MaterialAlertDialogBuilder(v.getContext(), R.style.Alertas).setView(alertaInsertarTexto);
-        alerta.setTitle(R.string.textoEditarTarea).setPositiveButton(R.string.textoOk, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String textoAlerta = editTextTextoAlerta.getText().toString().trim();
-                if (!textoAlerta.isEmpty()) {
-                    baseDeDatos.child(tarea.getId()).child("nombre").setValue(textoAlerta);
-                    tarea.setNombre(textoAlerta);
-                    notifyDataSetChanged();
-                }
+        alerta.setTitle(R.string.textoEditarTarea).setPositiveButton(R.string.textoOk, (dialog, which) -> {
+            String textoAlerta = editTextTextoAlerta.getText().toString().trim();
+            if (!textoAlerta.isEmpty()) {
+                baseDeDatos.child(tarea.getId()).child("nombre").setValue(textoAlerta);
+                tarea.setNombre(textoAlerta);
+                notifyDataSetChanged();
             }
-        }).setNeutralButton(R.string.textoCancelar, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {}});
+        }).setNeutralButton(R.string.textoCancelar, (dialog, which) -> {});
         alerta.show();
     }
 
     public void borrarTarea(View v, Tarea tarea) {
         MaterialAlertDialogBuilder alerta = new MaterialAlertDialogBuilder(v.getContext(), R.style.Alertas);
         alerta.setTitle(R.string.textoBorrarTarea).setMessage(R.string.descripcionBorrarTarea)
-                .setPositiveButton(R.string.textoSi, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        baseDeDatos.child(tarea.getId()).removeValue();
-                        tareas.remove(tarea);
-                        notifyDataSetChanged();
-                    }
-                }).setNeutralButton(R.string.textoCancelar, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {}});
+                .setPositiveButton(R.string.textoSi, (dialog, which) -> {
+                    baseDeDatos.child(tarea.getId()).removeValue();
+                    tareas.remove(tarea);
+                    notifyDataSetChanged();
+                }).setNeutralButton(R.string.textoCancelar, (dialog, which) -> {});
         alerta.show();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textoTarea;
-        public ImageButton imagenSubtareasVisibles, imagenSubtareasNoVisibles;
-        public CheckBox checkRealizada;
-        public ImageButton botonMasOpciones;
-        public RecyclerView listaSubtareas;
+        public final TextView textoTarea;
+        public final ImageButton imagenSubtareasVisibles, imagenSubtareasNoVisibles;
+        public final CheckBox checkRealizada;
+        public final ImageButton botonMasOpciones;
+        public final RecyclerView listaSubtareas;
         public AdaptadorSubtareas adaptador;
 
 
