@@ -27,6 +27,9 @@ import java.util.ArrayList;
 import adaptadores.AdaptadorRutinas;
 import tablas.Rutina;
 
+/**
+ * @author Daniel Alonso
+ */
 public class RutinasFragment extends Fragment implements View.OnClickListener {
     private AdaptadorRutinas adaptador;
     private final ArrayList<Rutina> rutinas = new ArrayList<>();

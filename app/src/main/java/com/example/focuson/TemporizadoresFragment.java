@@ -27,6 +27,9 @@ import java.util.ArrayList;
 import adaptadores.AdaptadorTemporizadores;
 import tablas.Temporizador;
 
+/**
+ * @author Daniel Alonso
+ */
 public class TemporizadoresFragment extends Fragment implements View.OnClickListener {
 
     private AdaptadorTemporizadores adaptador;

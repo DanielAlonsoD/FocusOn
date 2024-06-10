@@ -21,6 +21,9 @@ import java.util.ArrayList;
 
 import tablas.Rutina;
 
+/**
+ * @author Daniel Alonso
+ */
 public class AdaptadorRutinas extends RecyclerView.Adapter<AdaptadorRutinas.ViewHolder> {
     private final ArrayList<Rutina> rutinas;
     private final int layout;

@@ -19,6 +19,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import tablas.Temporizador;
 
+/**
+ * @author Daniel Alonso
+ */
 public class CrearTemporizadorActivity extends AppCompatActivity implements View.OnClickListener {
     private DatabaseReference baseDeDatos;
     private EditText editInsertarTituloTemporizador, editTextInsertarTiempoTrabajoHoras, editTextInsertarTiempoTrabajoMinutos, editTextInsertarTiempoTrabajoSegundos, editTextInsertarTiempoDescansoHoras, editTextInsertarTiempoDescansoMinutos, editTextInsertarTiempoDescansoSegundos;
@@ -80,6 +83,8 @@ public class CrearTemporizadorActivity extends AppCompatActivity implements View
 
     @Override
     public void onClick(View v) {
+        /*Si se cumple esta condición se revisa si los datos están rellenados y si lo están se guarda
+        el Temporizador en la base de datos.*/
         if (v.getId() == R.id.botonRealizarTemporizador) {
             String tituloTemporizador = editInsertarTituloTemporizador.getText().toString();
             String trabajoHoras = editTextInsertarTiempoTrabajoHoras.getText().toString();
@@ -99,11 +104,18 @@ public class CrearTemporizadorActivity extends AppCompatActivity implements View
                 baseDeDatos.push().setValue(temporizador);
                 getOnBackPressedDispatcher().onBackPressed();
             }
+        //Si no se cumple la condición se vuelve a la pantalla anterior.
         } else {
             getOnBackPressedDispatcher().onBackPressed();
         }
     }
 
+    /**
+     * En este método se obtiene un String con el tiempo indicado por las diferentes partes del array.
+     *
+     * @param tiempo: Array con los datos del tiempo (la hora, los minutos y los segundos).
+     * @return Un String con la hora insertada.
+     */
     public String creacionTiempo(String[] tiempo) {
         StringBuilder resultado = new StringBuilder();
         for(int i=0;i<tiempo.length; i++){

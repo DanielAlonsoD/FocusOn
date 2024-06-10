@@ -31,6 +31,9 @@ import adaptadores.AdaptadorTareas;
 import tablas.Subtarea;
 import tablas.Tarea;
 
+/**
+ * @author Daniel Alonso
+ */
 public class TareasFragment extends Fragment implements View.OnClickListener {
     private AdaptadorTareas adaptador;
     private final ArrayList<Tarea> tareas = new ArrayList<>();

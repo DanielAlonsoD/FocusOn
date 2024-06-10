@@ -1,5 +1,8 @@
 package tablas;
 
+/**
+ * @author Daniel Alonso
+ */
 public class Subtarea {
     private String id;
     private String nombre;

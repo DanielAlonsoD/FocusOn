@@ -2,6 +2,9 @@ package tablas;
 
 import java.util.ArrayList;
 
+/**
+ * @author Daniel Alonso
+ */
 public class Tarea {
     private String id;
     private String nombre;

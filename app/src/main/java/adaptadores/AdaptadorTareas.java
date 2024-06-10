@@ -28,6 +28,9 @@ import java.util.ArrayList;
 import tablas.Subtarea;
 import tablas.Tarea;
 
+/**
+ * @author Daniel Alonso
+ */
 public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.ViewHolder> {
     private final ArrayList<Tarea> tareas;
     private final Context contexto;

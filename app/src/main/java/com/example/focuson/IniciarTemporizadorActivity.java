@@ -18,6 +18,9 @@ import java.util.TimerTask;
 
 import tablas.Temporizador;
 
+/**
+ * @author Daniel Alonso
+ */
 public class IniciarTemporizadorActivity extends AppCompatActivity implements View.OnClickListener {
     private Temporizador temporizador;
     private TextView textoTipoTiempo, textoTiempo;

@@ -5,6 +5,9 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+/**
+ * @author Daniel Alonso
+ */
 public class Temporizador implements Parcelable {
     private String id;
     private final String titulo;

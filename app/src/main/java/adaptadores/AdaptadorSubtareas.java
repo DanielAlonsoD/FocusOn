@@ -25,6 +25,9 @@ import java.util.ArrayList;
 
 import tablas.Subtarea;
 
+/**
+ * @author Daniel Alonso
+ */
 public class AdaptadorSubtareas extends RecyclerView.Adapter<AdaptadorSubtareas.ViewHolder> {
     private final ArrayList<Subtarea> subtareas;
     private final Context contexto;

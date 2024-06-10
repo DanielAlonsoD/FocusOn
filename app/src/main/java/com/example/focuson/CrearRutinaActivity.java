@@ -24,6 +24,9 @@ import java.time.format.DateTimeFormatter;
 
 import tablas.Rutina;
 
+/**
+ * @author Daniel Alonso
+ */
 public class CrearRutinaActivity extends AppCompatActivity implements View.OnClickListener {
     private DatabaseReference baseDeDatos;
     private EditText editInsertarTituloHorario;
@@ -56,6 +59,8 @@ public class CrearRutinaActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
+        /*Si esta condición se cumple se abre una ventana para seleccionar una hora y que al aceptar
+        aparezca esta en un texto.*/
         if (v.getId() == R.id.botonSeleccionarHoraInicial || v.getId() == R.id.botonSeleccionarHoraFinal) {
             TextView textView = textViewHoraFinal;
             if (v.getId() == R.id.botonSeleccionarHoraInicial) {
@@ -70,6 +75,9 @@ public class CrearRutinaActivity extends AppCompatActivity implements View.OnCli
                 finalTextView.setVisibility(View.VISIBLE);
             }, 0, 0, true);
             selectorHora.show();
+
+        /*Si se cumple esta condición se revisa si los datos están rellenados y si lo están se guarda
+        la Rutina en la base de datos.*/
         } else if (v.getId() == R.id.botonRealizarRutina) {
             String tituloHorario = editInsertarTituloHorario.getText().toString();
             String diasTotales = diasSemanaHorario();
@@ -84,11 +92,15 @@ public class CrearRutinaActivity extends AppCompatActivity implements View.OnCli
                 baseDeDatos.push().setValue(rutina);
                 getOnBackPressedDispatcher().onBackPressed();
             }
+        //Si no se cumple ninguna condición se vuelve a la pantalla anterior.
         } else {
             getOnBackPressedDispatcher().onBackPressed();
         }
     }
 
+    /**
+     * En este método se obtienen todos los checkboxes para realizar el método setCheckBoxTexto con estos.
+     */
     public void creadorCheckboxHorario () {
         CheckBox checkboxLunes = findViewById(R.id.checkboxLunes);
         CheckBox checkboxMartes = findViewById(R.id.checkboxMartes);
@@ -101,6 +113,12 @@ public class CrearRutinaActivity extends AppCompatActivity implements View.OnCli
         setCheckboxTexto(checkBoxes);
     }
 
+    /**
+     * En este método se aplica la función de que si el checkbox es pulsado se añada el valor del checkbox al
+     * array de diasSemana o se cambie el dato por un null.
+     *
+     * @param checkBoxes: Array de CheckBox con los que realizaremos el método.
+     */
     public void setCheckboxTexto (CheckBox[] checkBoxes) {
         for (int i = 0; i<checkBoxes.length; i++) {
             int numero = i;
@@ -114,6 +132,11 @@ public class CrearRutinaActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    /**
+     * En este método se obtiene un String con todos los dias de la semana seleccionados por el usuario.
+     *
+     * @return Un String con los días de la semana seleccionados.
+     */
     public String diasSemanaHorario() {
         String diasTotales = "";
         for (String s : diasSemana) {

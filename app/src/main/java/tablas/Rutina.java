@@ -1,5 +1,8 @@
 package tablas;
 
+/**
+ * @author Daniel Alonso
+ */
 public class Rutina {
     private String id;
     private final String titulo;

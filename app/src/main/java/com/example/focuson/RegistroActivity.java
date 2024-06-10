@@ -18,6 +18,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import tablas.DatosUsuarioFirebase;
 
+/**
+ * @author Daniel Alonso
+ */
 public class RegistroActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth autenticacion;
     private FirebaseDatabase baseDeDatos;

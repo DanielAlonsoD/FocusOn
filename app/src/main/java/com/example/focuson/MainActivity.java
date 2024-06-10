@@ -14,6 +14,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * @author Daniel Alonso
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth autenticacion;
     private final MetodosEntreClases metodosEntreClases = new MetodosEntreClases();

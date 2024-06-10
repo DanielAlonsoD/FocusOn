@@ -23,6 +23,9 @@ import java.util.ArrayList;
 
 import tablas.Temporizador;
 
+/**
+ * @author Daniel Alonso
+ */
 public class AdaptadorTemporizadores extends RecyclerView.Adapter<AdaptadorTemporizadores.ViewHolder> {
     private final ArrayList<Temporizador> temporizadores;
     private final int layout;

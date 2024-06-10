@@ -13,6 +13,9 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+/**
+ * @author Daniel Alonso
+ */
 public class MenuActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
     private NavController navController;
     private MaterialToolbar encabezado;
